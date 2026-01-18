@@ -98,11 +98,65 @@ Illustration adopted from [Allison Horst](https://twitter.com/allison_horst)
 
 
 
+# Installing R and RStudio
+
+## Installing R and RStudio on Windows
+
+<br>
+
+::: {.box style="padding-bottom:56.25%; position:relative; display:block; width:100%"}
+<iframe width="100%" height="100%" src="https://www.youtube.com/embed/mxNrU902uyc?si=4ZpkkJWR0U4t9DRV" frameborder="0" allowfullscreen style="position:absolute; top:0; left: 0"></iframe>
+:::
 
 
+## Installing R and RStudio on Mac/MacOS
+
+<br>
+
+::: {.box style="padding-bottom:56.25%; position:relative; display:block; width:100%"}
+<iframe width="100%" height="100%" src="https://www.youtube.com/embed/I5WIMX4LK8M?si=KTR7GarK-JAB6Kej" frameborder="0" allowfullscreen style="position:absolute; top:0; left: 0"></iframe>
+:::
 
 
+## RStudio interface
 
+![](img/rstudio-interface.png){height="90%" width="90%" fig-align="center"}
+
+
+## RStudio interface: `Console window`
+
+- located in the bottom-left
+- where you often will find the output of your coding and computations
+
+
+![](img/console-pane.png){fig-align="center"}
+
+
+## RStudio interface: `Source window`
+
+- located in the top-left
+- *source* can be understood as any type of file, e.g. data, programming code, notes, etc.
+- edit script, text, markdown, website, others
+
+![](img/source-pane.png){width="70%" height="70%" fig-align="center"}
+
+
+## RStudio interface: `Environment/ History/ Connections/ Tutorials`
+
+- located in the top-right
+- **Environment:** shows saved R objects
+- **History:** computation you run in the console will be stored
+- **Connections:** allows the user to tab into external databases directly
+- **Tutorials:** additional materials to learn R and RStudio
+
+![](img/environment-pane.png){width="80%" height="80%" fig-align="center"}
+
+
+## RStudio interface: `Files/ Plots/ Packages/ Help/ Viewer`
+
+- located in the bottom-right
+
+![](img/file-plot-pane.png){width="80%" height="80%" fig-align="center"}
 
 
 
