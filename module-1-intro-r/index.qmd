@@ -34,16 +34,16 @@ library(tidyverse)
 ## Overview
 
 ::: incremental
--  What is R? 
+-   What is R?
 
--  R objects
+-   R objects
 
--  Packages and help pages
+-   Packages and help pages
 
--  R notation
+-   R notation
 :::
 
-#
+# 
 
 ::: {style="font-size: 80%; text-align: center;"}
 ![](img/r_first_then_new.png){width="90%" fig-align="center"}
@@ -51,38 +51,34 @@ library(tidyverse)
 Illustration adopted from [Allison Horst](https://twitter.com/allison_horst)
 :::
 
-
 # What is R?
-
 
 ## So ... what is R programming?
 
-- **R** is a language + an eco-system
-  - a free and open-source programming language
-  - an eco-system of many high-quality user-contributed libraries/packages
+-   **R** is a language + an eco-system
+    -   a free and open-source programming language
+    -   an eco-system of many high-quality user-contributed libraries/packages
 
-:::{.incremental}
-
-- Before, R is known for its statistical analysis toolkits
-- Nowadays R is capable of many other tasks
-  - tools that facilitates the whole data analysis workflow
-  - tools for web technology
-  - even this presentation is made in R!
-  - also our class website is entirely built in R!
+::: incremental
+-   Before, R is known for its statistical analysis toolkits
+-   Nowadays R is capable of many other tasks
+    -   tools that facilitates the whole data analysis workflow
+    -   tools for web technology
+    -   even this presentation is made in R!
+    -   also our class website is entirely built in R!
 :::
-
 
 ## The History of R programming
 
 <br>
 
 ::: {.box style="padding-bottom:56.25%; position:relative; display:block; width:100%"}
-<iframe width="100%" height="100%" src="https://www.youtube.com/embed/iq_biXEIx-U?si=qq-ArfqGkbO9oYGm" frameborder="0" allowfullscreen style="position:absolute; top:0; left: 0"></iframe>
+<iframe width="100%" height="100%" src="https://www.youtube.com/embed/iq_biXEIx-U?si=qq-ArfqGkbO9oYGm" frameborder="0" allowfullscreen style="position:absolute; top:0; left: 0">
+
+</iframe>
 :::
 
 ## Uses of R programming
-
-
 
 ## Why R for future economists and analysts?
 
@@ -96,8 +92,6 @@ Illustration adopted from [Allison Horst](https://twitter.com/allison_horst)
 
 > *"R is a powerful, flexible, and free software environment that allows economists to analyze data, estimate models, and visualize results in a reproducible way."*
 
-
-
 # Installing R and RStudio
 
 ## Installing R and RStudio on Windows
@@ -105,69 +99,55 @@ Illustration adopted from [Allison Horst](https://twitter.com/allison_horst)
 <br>
 
 ::: {.box style="padding-bottom:56.25%; position:relative; display:block; width:100%"}
-<iframe width="100%" height="100%" src="https://www.youtube.com/embed/mxNrU902uyc?si=4ZpkkJWR0U4t9DRV" frameborder="0" allowfullscreen style="position:absolute; top:0; left: 0"></iframe>
-:::
+<iframe width="100%" height="100%" src="https://www.youtube.com/embed/mxNrU902uyc?si=4ZpkkJWR0U4t9DRV" frameborder="0" allowfullscreen style="position:absolute; top:0; left: 0">
 
+</iframe>
+:::
 
 ## Installing R and RStudio on Mac/MacOS
 
 <br>
 
 ::: {.box style="padding-bottom:56.25%; position:relative; display:block; width:100%"}
-<iframe width="100%" height="100%" src="https://www.youtube.com/embed/I5WIMX4LK8M?si=KTR7GarK-JAB6Kej" frameborder="0" allowfullscreen style="position:absolute; top:0; left: 0"></iframe>
-:::
+<iframe width="100%" height="100%" src="https://www.youtube.com/embed/I5WIMX4LK8M?si=KTR7GarK-JAB6Kej" frameborder="0" allowfullscreen style="position:absolute; top:0; left: 0">
 
+</iframe>
+:::
 
 ## RStudio interface
 
 ![](img/rstudio-interface.png){height="90%" width="90%" fig-align="center"}
 
-
 ## RStudio interface: `Console window`
 
-- located in the bottom-left
-- where you often will find the output of your coding and computations
-
+-   located in the bottom-left
+-   where you often will find the output of your coding and computations
 
 ![](img/console-pane.png){fig-align="center"}
 
-
 ## RStudio interface: `Source window`
 
-- located in the top-left
-- *source* can be understood as any type of file, e.g. data, programming code, notes, etc.
-- edit script, text, markdown, website, others
+-   located in the top-left
+-   *source* can be understood as any type of file, e.g. data, programming code, notes, etc.
+-   edit script, text, markdown, website, others
 
 ![](img/source-pane.png){width="70%" height="70%" fig-align="center"}
 
-
 ## RStudio interface: `Environment/ History/ Connections/ Tutorials`
 
-- located in the top-right
-- **Environment:** shows saved R objects
-- **History:** computation you run in the console will be stored
-- **Connections:** allows the user to tab into external databases directly
-- **Tutorials:** additional materials to learn R and RStudio
+-   located in the top-right
+-   **Environment:** shows saved R objects
+-   **History:** computation you run in the console will be stored
+-   **Connections:** allows the user to tab into external databases directly
+-   **Tutorials:** additional materials to learn R and RStudio
 
 ![](img/environment-pane.png){width="80%" height="80%" fig-align="center"}
 
-
 ## RStudio interface: `Files/ Plots/ Packages/ Help/ Viewer`
 
-- located in the bottom-right
+-   located in the bottom-right
 
 ![](img/file-plot-pane.png){width="80%" height="80%" fig-align="center"}
-
-
-
-
-
-
-
-
-
-
-
 
 ## R Objects
 
@@ -175,7 +155,7 @@ Illustration adopted from [Allison Horst](https://twitter.com/allison_horst)
 ::: {.column width="60%"}
 -   You can consider R objects as **saving information**
 
--   e.g., text, number, matrix, vectro, dataframe
+-   e.g., text, number, matrix, vector, dataframe
 
 -   In another words everything in R is an object
 :::
@@ -313,8 +293,6 @@ library(tidyverse)
 ![](img/package.gif){width="80%" fig-align="center"}
 :::
 :::::
-
-
 
 # Let's practice
 
