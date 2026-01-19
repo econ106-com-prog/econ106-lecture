@@ -57,7 +57,9 @@ Illustration adopted from [Allison Horst](https://twitter.com/allison_horst)
 
 -   **R** is a language + an eco-system
     -   a free and open-source programming language
+    -   statistical analysis, graphics representation, and reporting
     -   an eco-system of many high-quality user-contributed libraries/packages
+    -   freely available under the GNU General Public License, and pre-compiled binary versions are provided for various operating systems (e.g., Linux, Windows, and Mac)
 
 ::: incremental
 -   Before, R is known for its statistical analysis toolkits
@@ -79,6 +81,15 @@ Illustration adopted from [Allison Horst](https://twitter.com/allison_horst)
 :::
 
 ## Uses of R programming
+
+<br>
+
+![](img/use-r.png)
+
+:::{.note}
+Source: web
+:::
+
 
 ## Why R for future economists and analysts?
 
