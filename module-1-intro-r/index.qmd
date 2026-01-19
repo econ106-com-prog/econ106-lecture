@@ -84,10 +84,10 @@ Illustration adopted from [Allison Horst](https://twitter.com/allison_horst)
 
 <br>
 
-![](img/use-r.png)
+![](img/use-r.png){fig-align="center" width="90%" height="90%"}
 
-:::{.note}
-Source: web
+:::{style="font-size: 0.8em;"}
+Source: [DataFlair](https://data-flair.training/blogs/r-applications/)
 :::
 
 
