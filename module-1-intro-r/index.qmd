@@ -34,13 +34,11 @@ library(tidyverse)
 ## Overview
 
 ::: incremental
--   What is R?
-
--   R objects
-
--   Packages and help pages
-
--   R notation
+- What is R?
+- Installing R and RStudio
+- R objects
+- Packages and help pages
+- R notation
 :::
 
 # 
@@ -86,10 +84,9 @@ Illustration adopted from [Allison Horst](https://twitter.com/allison_horst)
 
 ![](img/use-r.png){fig-align="center" width="90%" height="90%"}
 
-:::{style="font-size: 0.8em;"}
+::: {style="font-size: 0.8em;"}
 Source: [DataFlair](https://data-flair.training/blogs/r-applications/)
 :::
-
 
 ## Why R for future economists and analysts?
 
@@ -159,6 +156,9 @@ Source: [DataFlair](https://data-flair.training/blogs/r-applications/)
 -   located in the bottom-right
 
 ![](img/file-plot-pane.png){width="80%" height="80%" fig-align="center"}
+
+
+# R objects and packages
 
 ## R Objects
 
@@ -305,7 +305,78 @@ library(tidyverse)
 :::
 :::::
 
-# Let's practice
+# Functions
+
+## R functions
+
+- R comes with built-in functions
+- For example, you can round a number with `round` function
+
+::: {.columns}
+::: {.column}
+```{r}
+#| echo: fenced
+round(3.1415)
+```
+
+```{r}
+#| echo: fenced
+
+factorial(3)
+```
+
+:::
+::: {.column}
+:::
+:::
+
+
+## Arguments
+
+- data that you pass into the function is called the function’s argument
+- Linking functions together, R resolves them from innermost operation to the outermost
+
+```{.r}
+die <- 1:6
+
+mean(1:6)
+## 3.5
+
+mean(die)
+## 3.5
+
+round(mean(die))
+## 4
+```
+
+![](https://rstudio-education.github.io/hopr/images/hopr_0105.png){fig-align="center" width="120%" height="120%"}
+
+
+## Arguments
+
+- use `args` functions if you are not sure with the argument's name in a function
+- some `arguments` are optional
+    - they come with a default value
+    - e.g., `digits` is already set to `0`
+
+```{r}
+#| echo: fenced
+
+args(round)
+```
+
+
+## Sample with replacements
+
+-  `sample(x, size, replace = FALSE, prob = NULL)`
+- `sample` will return `size` elements from the vector
+- `sample` takes two **arguments**: a vector named `x` and a number named `size`
+
+```{r}
+#| echo: fenced
+sample(x = 1:4, size = 2)
+```
+
 
 # 
 

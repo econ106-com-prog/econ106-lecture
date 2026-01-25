@@ -203,10 +203,11 @@
 <section id="overview" class="slide level2">
 <h2>Overview</h2>
 <ul>
-<li class="fragment"><p>What is R?</p></li>
-<li class="fragment"><p>R objects</p></li>
-<li class="fragment"><p>Packages and help pages</p></li>
-<li class="fragment"><p>R notation</p></li>
+<li class="fragment">What is R?</li>
+<li class="fragment">Installing R and RStudio</li>
+<li class="fragment">R objects</li>
+<li class="fragment">Packages and help pages</li>
+<li class="fragment">R notation</li>
 </ul>
 </section>
 <section id="section" class="title-slide slide level1 center">
@@ -365,6 +366,11 @@
 <p><img data-src="img/file-plot-pane.png" class="quarto-figure quarto-figure-center" style="width:80.0%;height:80.0%"></p>
 </figure>
 </div>
+</section></section>
+<section>
+<section id="r-objects-and-packages" class="title-slide slide level1 center">
+<h1>R objects and packages</h1>
+
 </section>
 <section id="r-objects" class="slide level2">
 <h2>R Objects</h2>
@@ -470,11 +476,89 @@
 </div>
 </div></div>
 </section></section>
-<section id="lets-practice" class="title-slide slide level1 center">
-<h1>Let’s practice</h1>
+<section>
+<section id="functions" class="title-slide slide level1 center">
+<h1>Functions</h1>
 
 </section>
+<section id="r-functions" class="slide level2">
+<h2>R functions</h2>
+<ul>
+<li>R comes with built-in functions</li>
+<li>For example, you can round a number with <code>round</code> function</li>
+</ul>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb13-2"><a href=""></a><span class="fu">round</span>(<span class="fl">3.1415</span>)</span>
+<span id="cb13-3"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb15-2"><a href=""></a><span class="fu">factorial</span>(<span class="dv">3</span>)</span>
+<span id="cb15-3"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>[1] 6</code></pre>
+</div>
+</div><div class="column">
 
+</div></div>
+</section>
+<section id="arguments" class="slide level2">
+<h2>Arguments</h2>
+<ul>
+<li>data that you pass into the function is called the function’s argument</li>
+<li>Linking functions together, R resolves them from innermost operation to the outermost</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>die <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb17-2"><a href=""></a></span>
+<span id="cb17-3"><a href=""></a><span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb17-4"><a href=""></a><span class="do">## 3.5</span></span>
+<span id="cb17-5"><a href=""></a></span>
+<span id="cb17-6"><a href=""></a><span class="fu">mean</span>(die)</span>
+<span id="cb17-7"><a href=""></a><span class="do">## 3.5</span></span>
+<span id="cb17-8"><a href=""></a></span>
+<span id="cb17-9"><a href=""></a><span class="fu">round</span>(<span class="fu">mean</span>(die))</span>
+<span id="cb17-10"><a href=""></a><span class="do">## 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://rstudio-education.github.io/hopr/images/hopr_0105.png" class="quarto-figure quarto-figure-center" style="width:120.0%;height:120.0%"></p>
+</figure>
+</div>
+</section>
+<section id="arguments-1" class="slide level2">
+<h2>Arguments</h2>
+<ul>
+<li>use <code>args</code> functions if you are not sure with the argument’s name in a function</li>
+<li>some <code>arguments</code> are optional
+<ul>
+<li>they come with a default value</li>
+<li>e.g., <code>digits</code> is already set to <code>0</code></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb18-2"><a href=""></a><span class="fu">args</span>(round)</span>
+<span id="cb18-3"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>function (x, digits = 0, ...) 
+NULL</code></pre>
+</div>
+</section>
+<section id="sample-with-replacements" class="slide level2">
+<h2>Sample with replacements</h2>
+<ul>
+<li><code>sample(x, size, replace = FALSE, prob = NULL)</code></li>
+<li><code>sample</code> will return <code>size</code> elements from the vector</li>
+<li><code>sample</code> takes two <strong>arguments</strong>: a vector named <code>x</code> and a number named <code>size</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb20-2"><a href=""></a><span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">size =</span> <span class="dv">2</span>)</span>
+<span id="cb20-3"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>[1] 4 3</code></pre>
+</div>
+</section></section>
 <section id="section-1" class="title-slide slide level1 center">
 <h1></h1>
 <div class="quarto-figure quarto-figure-center">
