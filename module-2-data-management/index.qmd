@@ -1,7 +1,7 @@
 ---
 title: "."
 title-slide-attributes: 
-  data-background-image: "img/module-intro-r-title-page.png"
+  data-background-image: "img/module2.png"
   data-background-size: "cover"
 format: 
   revealjs:
@@ -34,10 +34,12 @@ library(tidyverse)
 ## Overview
 
 ::: incremental
--   Reading data into R
--   Basic data wrangling
--   Basic data transformation
--   Handling missing data
+- Dataframe and tibble
+- Introduction to Tidyverse
+- Basic data wrangling with `dplyr`
+- Data reshaping
+- Handling missing data
+- Case studies
 :::
 
 # 
@@ -47,6 +49,70 @@ library(tidyverse)
 
 Illustration adopted from [Allison Horst](https://twitter.com/allison_horst)
 :::
+
+
+# Introduction to Tidyverse
+
+
+## Tidyverse package {.center-text}
+
+![](img/tidyverse.png){height="60%" width="50%" fig-align="center"}
+
+## What is tidyverse?
+
+A collection of R packages designed for data science.
+
+All packages share an underlying philosophy, grammar, and data structure.
+
+<center><img src="https://rstudio-education.github.io/tidyverse-cookbook/images/data-science-workflow.png" style="width:60%"/></center>
+
+## 
+
+<center><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_1.jpg" style="width:80%"/></center>
+
+::: {style="font-size:70%; text-align:center;"}
+Illustration adopted from [Allison Horst](https://github.com/allisonhorst)
+:::
+
+## 
+
+<center><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_2.jpg" style="width: 80%"/></center>
+
+::: {style="font-size:70%; text-align:center;"}
+Illustration adopted from [Allison Horst](https://github.com/allisonhorst)
+:::
+
+## 
+
+::: center-text
+**Tidy data makes it easier for reproducibility and reuse**
+:::
+
+<center><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_5.jpg" style="width: 80%"/></center>
+
+::: {style="font-size:70%; text-align:center;"}
+Illustration adopted from [Allison Horst](https://github.com/allisonhorst)
+:::
+
+## 
+
+::: center-text
+**Yehey! Tidy Data for the win!**
+:::
+
+<center><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_6.jpg" style="width: 70%"/></center>
+
+::: {style="font-size:70%; text-align:center;"}
+Illustration adopted from [Allison Horst](https://github.com/allisonhorst)
+:::
+
+
+# Dataframe and tibble
+
+## Dataframe
+
+
+## Tibble
 
 # Reading data into R
 
@@ -209,59 +275,7 @@ knitr::include_graphics("img/readr.png")
 
 # Let's practice
 
-# Basic data wrangling
-
-## Basic data wrangling with Tidyverse {.center-text}
-
-![](img/tidyverse.png){height="60%" width="50%" fig-align="center"}
-
-## What is tidyverse?
-
-A collection of R packages designed for data science.
-
-All packages share an underlying philosophy, grammar, and data structure.
-
-<center><img src="https://rstudio-education.github.io/tidyverse-cookbook/images/data-science-workflow.png" style="width:60%"/></center>
-
-## 
-
-<center><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_1.jpg" style="width:80%"/></center>
-
-::: {style="font-size:70%; text-align:center;"}
-Illustration adopted from [Allison Horst](https://github.com/allisonhorst)
-:::
-
-## 
-
-<center><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_2.jpg" style="width: 80%"/></center>
-
-::: {style="font-size:70%; text-align:center;"}
-Illustration adopted from [Allison Horst](https://github.com/allisonhorst)
-:::
-
-## 
-
-::: center-text
-**Tidy data makes it easier for reproducibility and reuse**
-:::
-
-<center><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_5.jpg" style="width: 80%"/></center>
-
-::: {style="font-size:70%; text-align:center;"}
-Illustration adopted from [Allison Horst](https://github.com/allisonhorst)
-:::
-
-## 
-
-::: center-text
-**Yehey! Tidy Data for the win!**
-:::
-
-<center><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_6.jpg" style="width: 70%"/></center>
-
-::: {style="font-size:70%; text-align:center;"}
-Illustration adopted from [Allison Horst](https://github.com/allisonhorst)
-:::
+# Basic data wrangling with `dplyr`
 
 ## Data wrangling using `dplyr` {.center-text}
 

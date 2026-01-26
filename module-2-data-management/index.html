@@ -193,7 +193,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="img/module-intro-r-title-page.png" data-background-size="cover" class="quarto-title-block center">
+<section id="title-slide" data-background-image="img/module2.png" data-background-size="cover" class="quarto-title-block center">
   <h1 class="title">.</h1>
 
 <div class="quarto-title-authors">
@@ -203,10 +203,12 @@
 <section id="overview" class="slide level2">
 <h2>Overview</h2>
 <ul>
-<li class="fragment">Reading data into R</li>
-<li class="fragment">Basic data wrangling</li>
-<li class="fragment">Basic data transformation</li>
+<li class="fragment">Dataframe and tibble</li>
+<li class="fragment">Introduction to Tidyverse</li>
+<li class="fragment">Basic data wrangling with <code>dplyr</code></li>
+<li class="fragment">Data reshaping</li>
 <li class="fragment">Handling missing data</li>
+<li class="fragment">Case studies</li>
 </ul>
 </section>
 <section id="section" class="title-slide slide level1 center">
@@ -221,6 +223,80 @@
 </div>
 </section>
 
+<section>
+<section id="introduction-to-tidyverse" class="title-slide slide level1 center">
+<h1>Introduction to Tidyverse</h1>
+
+</section>
+<section id="tidyverse-package" class="slide level2 center-text">
+<h2>Tidyverse package</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/tidyverse.png" class="quarto-figure quarto-figure-center" style="width:50.0%;height:60.0%"></p>
+</figure>
+</div>
+</section>
+<section id="what-is-tidyverse" class="slide level2">
+<h2>What is tidyverse?</h2>
+<p>A collection of R packages designed for data science.</p>
+<p>All packages share an underlying philosophy, grammar, and data structure.</p>
+<center>
+<img src="https://rstudio-education.github.io/tidyverse-cookbook/images/data-science-workflow.png" style="width:60%">
+</center>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<center>
+<img src="https://www.openscapes.org/img/blog/tidydata/tidydata_1.jpg" style="width:80%">
+</center>
+<div style="font-size:70%; text-align:center;">
+<p>Illustration adopted from <a href="https://github.com/allisonhorst">Allison Horst</a></p>
+</div>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<center>
+<img src="https://www.openscapes.org/img/blog/tidydata/tidydata_2.jpg" style="width: 80%">
+</center>
+<div style="font-size:70%; text-align:center;">
+<p>Illustration adopted from <a href="https://github.com/allisonhorst">Allison Horst</a></p>
+</div>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<div class="center-text">
+<p><strong>Tidy data makes it easier for reproducibility and reuse</strong></p>
+</div>
+<center>
+<img src="https://www.openscapes.org/img/blog/tidydata/tidydata_5.jpg" style="width: 80%">
+</center>
+<div style="font-size:70%; text-align:center;">
+<p>Illustration adopted from <a href="https://github.com/allisonhorst">Allison Horst</a></p>
+</div>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<div class="center-text">
+<p><strong>Yehey! Tidy Data for the win!</strong></p>
+</div>
+<center>
+<img src="https://www.openscapes.org/img/blog/tidydata/tidydata_6.jpg" style="width: 70%">
+</center>
+<div style="font-size:70%; text-align:center;">
+<p>Illustration adopted from <a href="https://github.com/allisonhorst">Allison Horst</a></p>
+</div>
+</section></section>
+<section>
+<section id="dataframe-and-tibble" class="title-slide slide level1 center">
+<h1>Dataframe and tibble</h1>
+
+</section>
+<section id="dataframe" class="slide level2">
+<h2>Dataframe</h2>
+</section>
+<section id="tibble" class="slide level2">
+<h2>Tibble</h2>
+</section></section>
 <section>
 <section id="reading-data-into-r" class="title-slide slide level1 center">
 <h1>Reading data into R</h1>
@@ -351,67 +427,9 @@
 </section>
 
 <section>
-<section id="basic-data-wrangling" class="title-slide slide level1 center">
-<h1>Basic data wrangling</h1>
+<section id="basic-data-wrangling-with-dplyr" class="title-slide slide level1 center">
+<h1>Basic data wrangling with <code>dplyr</code></h1>
 
-</section>
-<section id="basic-data-wrangling-with-tidyverse" class="slide level2 center-text">
-<h2>Basic data wrangling with Tidyverse</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/tidyverse.png" class="quarto-figure quarto-figure-center" style="width:50.0%;height:60.0%"></p>
-</figure>
-</div>
-</section>
-<section id="what-is-tidyverse" class="slide level2">
-<h2>What is tidyverse?</h2>
-<p>A collection of R packages designed for data science.</p>
-<p>All packages share an underlying philosophy, grammar, and data structure.</p>
-<center>
-<img src="https://rstudio-education.github.io/tidyverse-cookbook/images/data-science-workflow.png" style="width:60%">
-</center>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<center>
-<img src="https://www.openscapes.org/img/blog/tidydata/tidydata_1.jpg" style="width:80%">
-</center>
-<div style="font-size:70%; text-align:center;">
-<p>Illustration adopted from <a href="https://github.com/allisonhorst">Allison Horst</a></p>
-</div>
-</section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-<center>
-<img src="https://www.openscapes.org/img/blog/tidydata/tidydata_2.jpg" style="width: 80%">
-</center>
-<div style="font-size:70%; text-align:center;">
-<p>Illustration adopted from <a href="https://github.com/allisonhorst">Allison Horst</a></p>
-</div>
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-<div class="center-text">
-<p><strong>Tidy data makes it easier for reproducibility and reuse</strong></p>
-</div>
-<center>
-<img src="https://www.openscapes.org/img/blog/tidydata/tidydata_5.jpg" style="width: 80%">
-</center>
-<div style="font-size:70%; text-align:center;">
-<p>Illustration adopted from <a href="https://github.com/allisonhorst">Allison Horst</a></p>
-</div>
-</section>
-<section id="section-4" class="slide level2">
-<h2></h2>
-<div class="center-text">
-<p><strong>Yehey! Tidy Data for the win!</strong></p>
-</div>
-<center>
-<img src="https://www.openscapes.org/img/blog/tidydata/tidydata_6.jpg" style="width: 70%">
-</center>
-<div style="font-size:70%; text-align:center;">
-<p>Illustration adopted from <a href="https://github.com/allisonhorst">Allison Horst</a></p>
-</div>
 </section>
 <section id="data-wrangling-using-dplyr" class="slide level2 center-text">
 <h2>Data wrangling using <code>dplyr</code></h2>
