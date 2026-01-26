@@ -386,6 +386,83 @@ die <- 1:6
 sample(x = die, size = 2, replace = TRUE)
 ```
 
+
+## Function constructor
+
+- functions in R has three basic parts: name, body of code, and set of arguments
+
+```{r}
+#| echo: fenced
+my_function <- function(){}
+```
+
+
+## Function constructor
+
+- `function` will build a function between braces
+
+```{r}
+#| echo: fenced
+roll <- function() {
+  die <- 1:6
+  dice <- sample(die, size = 2, replace = TRUE)
+  sum(dice)
+}
+```
+
+
+## Function constructor 
+
+![](https://rstudio-education.github.io/hopr/images/hopr_0106.png)
+
+
+# R notation
+
+## Selecting values 
+
+- R has notation for selecting values from R objects
+- `data[row, column]`
+
+```{r}
+#| echo: fenced
+gapminder_dta <- gapminder::gapminder
+
+gapminder_dta[1, ]
+```
+
+
+## Selecting values
+
+- R has notation for selecting values from R objects
+- `data[row, column]`
+
+```{r}
+#| echo: fenced
+gapminder_dta[, 2]
+```
+
+
+## Selecting values
+
+- R has notation for selecting values from R objects
+- `data[row, column]`
+
+```{r}
+#| echo: fenced
+
+gapminder_dta[3, 2]
+```
+
+
+
+
+
+
+
+
+
+
+
 # 
 
 ![](img/econ106-logo.png){fig-align="center" height="40%" width="40%"}
