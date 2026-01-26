@@ -556,7 +556,22 @@ NULL</code></pre>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href=""></a><span class="in">```{r}</span></span>
 <span id="cb20-2"><a href=""></a><span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">size =</span> <span class="dv">2</span>)</span>
 <span id="cb20-3"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>[1] 4 3</code></pre>
+<pre><code>[1] 1 4</code></pre>
+</div>
+</section>
+<section id="sample-with-replacements-1" class="slide level2">
+<h2>Sample with replacements</h2>
+<ul>
+<li>by default <code>sample</code> builds a sample <em>without replacement</em></li>
+<li><code>replace = TRUE</code> causes sample to <em>sample with replacement</em></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb22-2"><a href=""></a>die <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb22-3"><a href=""></a></span>
+<span id="cb22-4"><a href=""></a><span class="fu">sample</span>(<span class="at">x =</span> die, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-5"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>[1] 3 6</code></pre>
 </div>
 </section></section>
 <section id="section-1" class="title-slide slide level1 center">

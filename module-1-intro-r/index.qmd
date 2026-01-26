@@ -34,11 +34,11 @@ library(tidyverse)
 ## Overview
 
 ::: incremental
-- What is R?
-- Installing R and RStudio
-- R objects
-- Packages and help pages
-- R notation
+-   What is R?
+-   Installing R and RStudio
+-   R objects
+-   Packages and help pages
+-   R notation
 :::
 
 # 
@@ -156,7 +156,6 @@ Source: [DataFlair](https://data-flair.training/blogs/r-applications/)
 -   located in the bottom-right
 
 ![](img/file-plot-pane.png){width="80%" height="80%" fig-align="center"}
-
 
 # R objects and packages
 
@@ -309,11 +308,11 @@ library(tidyverse)
 
 ## R functions
 
-- R comes with built-in functions
-- For example, you can round a number with `round` function
+-   R comes with built-in functions
+-   For example, you can round a number with `round` function
 
-::: {.columns}
-::: {.column}
+::::: columns
+::: column
 ```{r}
 #| echo: fenced
 round(3.1415)
@@ -324,19 +323,18 @@ round(3.1415)
 
 factorial(3)
 ```
-
-:::
-::: {.column}
-:::
 :::
 
+::: column
+:::
+:::::
 
 ## Arguments
 
-- data that you pass into the function is called the function’s argument
-- Linking functions together, R resolves them from innermost operation to the outermost
+-   data that you pass into the function is called the function’s argument
+-   Linking functions together, R resolves them from innermost operation to the outermost
 
-```{.r}
+``` r
 die <- 1:6
 
 mean(1:6)
@@ -351,13 +349,12 @@ round(mean(die))
 
 ![](https://rstudio-education.github.io/hopr/images/hopr_0105.png){fig-align="center" width="120%" height="120%"}
 
-
 ## Arguments
 
-- use `args` functions if you are not sure with the argument's name in a function
-- some `arguments` are optional
-    - they come with a default value
-    - e.g., `digits` is already set to `0`
+-   use `args` functions if you are not sure with the argument's name in a function
+-   some `arguments` are optional
+    -   they come with a default value
+    -   e.g., `digits` is already set to `0`
 
 ```{r}
 #| echo: fenced
@@ -365,18 +362,29 @@ round(mean(die))
 args(round)
 ```
 
-
 ## Sample with replacements
 
--  `sample(x, size, replace = FALSE, prob = NULL)`
-- `sample` will return `size` elements from the vector
-- `sample` takes two **arguments**: a vector named `x` and a number named `size`
+-   `sample(x, size, replace = FALSE, prob = NULL)`
+-   `sample` will return `size` elements from the vector
+-   `sample` takes two **arguments**: a vector named `x` and a number named `size`
 
 ```{r}
 #| echo: fenced
 sample(x = 1:4, size = 2)
 ```
 
+
+## Sample with replacements
+
+- by default `sample` builds a sample *without replacement*
+- `replace = TRUE` causes sample to *sample with replacement*
+
+```{r}
+#| echo: fenced
+die <- 1:6
+
+sample(x = die, size = 2, replace = TRUE)
+```
 
 # 
 
