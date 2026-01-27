@@ -107,12 +107,138 @@ Illustration adopted from [Allison Horst](https://github.com/allisonhorst)
 :::
 
 
-# Dataframe and tibble
+# Data structures
+
+
+## Data structure
+
+- R has a variety of holding data
+- e.g., scalars, vectors, matrices, arrays, dataframes
+
+![R Data Structure. Source: Kabacoff (2011) R in Action](img/data-structure.png){fig-align="center"}
+
+
+## Vectors
+
+- vectors are one dimnensional arrays that can hold numeric, character, or logical data
+- combine function `c()` is used to form a vector
+
+```{r}
+#| echo: fenced
+
+a <- c(1, 2, 5, 3, 6, -2, 4)
+b <- c("one", "two", "three")
+c <- c(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE)
+```
+
+:::{.incremental}
+- `a` is a numeric vector
+- `b` is a character vector
+- `c` is a logical vector
+:::
+
+
+## Vectors
+
+- vectors are one dimnensional arrays that can hold numeric, character, or logical data
+- combine function `c()` is used to form a vector
+- scalars are one-element vectors. They’re used to hold constants.
+    - e.g., `f <- 3`, g `<- "US"` and `h <- TRUE`
+
+```{r}
+#| echo: fenced
+
+a <- c(1, 2, 5, 3, 6, -2, 4)
+b <- c("one", "two", "three")
+c <- c(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE)
+```
+
+
+
+## Vectors
+
+::: {.callout-note style="font-size:1.5em;"}
+## Remember
+Data in a vector must only be one type or mode (numeric, character, or logical). You can’t mix modes in the same vector. If you try to mix data types (modes) in a vector, R automatically converts the elements of the vector to a single, common type.
+:::
+
+- logicals and numerics, logicals → numeric (`TRUE = 1`,` FALSE = 0`)
+
+- integers and numerics, integers → numeric
+
+- anything with characters → character strings
+
+
+```{r}
+#| echo: fenced
+my_vector <- c(1, "hello", TRUE, 3.14)
+my_vector 
+
+# Check the type of the vector
+typeof(my_vector)
+
+```
+
+
+## Matrices
+
+- two-dimensional array where each element has the same data types
+- matrices are created with the `matrix` function
+
+```{r}
+#| echo: fenced
+
+y <- matrix(1:20, nrow = 5, ncol = 4)
+y
+```
+
+
+## Matrices
+
+- two-dimensional array where each element has the same data types
+- matrices are created with the `matrix` function
+
+```{r}
+#| echo: fenced
+# elements, row and column names
+cells <- c(1, 26, 24, 68)
+rnames <- c("R1", "R2")
+cnames <- c("C1", "C2")
+
+# my matrix
+mymatrix <- matrix(cells, nrow=2, ncol=2, byrow=TRUE, dimnames = list(rnames, cnames))
+
+# print matrix
+mymatrix
+```
+
+
+
+## Arrays
+
+- similar to matrices but can have more than two dimensions
+- created with an array function
+    - `myarray <- array(vector, dimensions, dimnames)`
+
+```{r}
+#| echo: fenced
+dim1 <- c("A1", "A2")
+dim2 <- c("B1", "B2", "B3")
+dim3 <- c("C1", "C2", "C3", "C4")
+
+z <- array(1:24, c(2, 3, 4), dimnames=list(dim1, dim2, dim3))
+z
+```
 
 ## Dataframe
 
 
 ## Tibble
+
+
+## Data structures
+
+
 
 # Reading data into R
 
