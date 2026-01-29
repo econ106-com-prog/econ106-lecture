@@ -457,14 +457,253 @@ A1 19 21 23
 A2 20 22 24</code></pre>
 </div>
 </section>
-<section id="dataframe" class="slide level2">
-<h2>Dataframe</h2>
+<section id="data-frame" class="slide level2">
+<h2>Data frame</h2>
+<ul>
+<li><p>a more general than a matrix in that different columns can contain different modes of data</p></li>
+<li><p>similar to the datasets you’d typically see in SAS, SPSS, and Stata</p></li>
+<li><p>data frames are the most common data structure you’ll deal with in R</p></li>
+</ul>
+
+<img data-src="https://r4ds.hadley.nz/images/tidy-1.png" class="r-stretch quarto-figure-center"><p class="caption">Source: Wickham 2025. R for Data Science 2nd ed</p></section>
+<section id="data-frame-1" class="slide level2">
+<h2>Data frame</h2>
+<ul>
+<li>data frames are the most common data structure you will be working in R</li>
+<li>you can create a data frame using <code>data.frame()</code> function</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href=""></a><span class="do">## creating column vector</span></span>
+<span id="cb11-3"><a href=""></a>patientID <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb11-4"><a href=""></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">34</span>, <span class="dv">28</span>, <span class="dv">52</span>)</span>
+<span id="cb11-5"><a href=""></a>diabetes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Type1"</span>, <span class="st">"Type2"</span>, <span class="st">"Type1"</span>, <span class="st">"Type1"</span>)</span>
+<span id="cb11-6"><a href=""></a>status <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Poor"</span>, <span class="st">"Improved"</span>, <span class="st">"Excellent"</span>, <span class="st">"Poor"</span>)</span>
+<span id="cb11-7"><a href=""></a></span>
+<span id="cb11-8"><a href=""></a><span class="do">## using data.frame to create patient_data frame</span></span>
+<span id="cb11-9"><a href=""></a>patientdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(patientID, age, diabetes, status)</span>
+<span id="cb11-10"><a href=""></a></span>
+<span id="cb11-11"><a href=""></a><span class="do">## print patient data frame</span></span>
+<span id="cb11-12"><a href=""></a>patientdata</span>
+<span id="cb11-13"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>  patientID age diabetes    status
+1         1  25    Type1      Poor
+2         2  34    Type2  Improved
+3         3  28    Type1 Excellent
+4         4  52    Type1      Poor</code></pre>
+</div>
 </section>
 <section id="tibble" class="slide level2">
 <h2>Tibble</h2>
+<ul>
+<li>a modern reimagining of <code>data.frame</code></li>
+<li>tibbles are data frames</li>
+<li>create a tibble from individual vectors using <code>tibble()</code> function</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb13-2"><a href=""></a><span class="fu">tibble</span>(</span>
+<span id="cb13-3"><a href=""></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, </span>
+<span id="cb13-4"><a href=""></a>  <span class="at">y =</span> <span class="dv">1</span>, </span>
+<span id="cb13-5"><a href=""></a>  <span class="at">z =</span> x <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> y</span>
+<span id="cb13-6"><a href=""></a>)</span>
+<span id="cb13-7"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code># A tibble: 5 × 3
+      x     y     z
+  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1     1     2
+2     2     1     5
+3     3     1    10
+4     4     1    17
+5     5     1    26</code></pre>
+</div>
 </section>
-<section id="data-structures-1" class="slide level2">
-<h2>Data structures</h2>
+<section id="tibble-1" class="slide level2">
+<h2>Tibble</h2>
+<ul>
+<li>we can coerce a data frame to a tibble using <code>as_tibble</code> function</li>
+</ul>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb15-2"><a href=""></a>iris</span>
+<span id="cb15-3"><a href=""></a></span>
+<span id="cb15-4"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1            5.1         3.5          1.4         0.2     setosa
+2            4.9         3.0          1.4         0.2     setosa
+3            4.7         3.2          1.3         0.2     setosa
+4            4.6         3.1          1.5         0.2     setosa
+5            5.0         3.6          1.4         0.2     setosa
+6            5.4         3.9          1.7         0.4     setosa
+7            4.6         3.4          1.4         0.3     setosa
+8            5.0         3.4          1.5         0.2     setosa
+9            4.4         2.9          1.4         0.2     setosa
+10           4.9         3.1          1.5         0.1     setosa
+11           5.4         3.7          1.5         0.2     setosa
+12           4.8         3.4          1.6         0.2     setosa
+13           4.8         3.0          1.4         0.1     setosa
+14           4.3         3.0          1.1         0.1     setosa
+15           5.8         4.0          1.2         0.2     setosa
+16           5.7         4.4          1.5         0.4     setosa
+17           5.4         3.9          1.3         0.4     setosa
+18           5.1         3.5          1.4         0.3     setosa
+19           5.7         3.8          1.7         0.3     setosa
+20           5.1         3.8          1.5         0.3     setosa
+21           5.4         3.4          1.7         0.2     setosa
+22           5.1         3.7          1.5         0.4     setosa
+23           4.6         3.6          1.0         0.2     setosa
+24           5.1         3.3          1.7         0.5     setosa
+25           4.8         3.4          1.9         0.2     setosa
+26           5.0         3.0          1.6         0.2     setosa
+27           5.0         3.4          1.6         0.4     setosa
+28           5.2         3.5          1.5         0.2     setosa
+29           5.2         3.4          1.4         0.2     setosa
+30           4.7         3.2          1.6         0.2     setosa
+31           4.8         3.1          1.6         0.2     setosa
+32           5.4         3.4          1.5         0.4     setosa
+33           5.2         4.1          1.5         0.1     setosa
+34           5.5         4.2          1.4         0.2     setosa
+35           4.9         3.1          1.5         0.2     setosa
+36           5.0         3.2          1.2         0.2     setosa
+37           5.5         3.5          1.3         0.2     setosa
+38           4.9         3.6          1.4         0.1     setosa
+39           4.4         3.0          1.3         0.2     setosa
+40           5.1         3.4          1.5         0.2     setosa
+41           5.0         3.5          1.3         0.3     setosa
+42           4.5         2.3          1.3         0.3     setosa
+43           4.4         3.2          1.3         0.2     setosa
+44           5.0         3.5          1.6         0.6     setosa
+45           5.1         3.8          1.9         0.4     setosa
+46           4.8         3.0          1.4         0.3     setosa
+47           5.1         3.8          1.6         0.2     setosa
+48           4.6         3.2          1.4         0.2     setosa
+49           5.3         3.7          1.5         0.2     setosa
+50           5.0         3.3          1.4         0.2     setosa
+51           7.0         3.2          4.7         1.4 versicolor
+52           6.4         3.2          4.5         1.5 versicolor
+53           6.9         3.1          4.9         1.5 versicolor
+54           5.5         2.3          4.0         1.3 versicolor
+55           6.5         2.8          4.6         1.5 versicolor
+56           5.7         2.8          4.5         1.3 versicolor
+57           6.3         3.3          4.7         1.6 versicolor
+58           4.9         2.4          3.3         1.0 versicolor
+59           6.6         2.9          4.6         1.3 versicolor
+60           5.2         2.7          3.9         1.4 versicolor
+61           5.0         2.0          3.5         1.0 versicolor
+62           5.9         3.0          4.2         1.5 versicolor
+63           6.0         2.2          4.0         1.0 versicolor
+64           6.1         2.9          4.7         1.4 versicolor
+65           5.6         2.9          3.6         1.3 versicolor
+66           6.7         3.1          4.4         1.4 versicolor
+67           5.6         3.0          4.5         1.5 versicolor
+68           5.8         2.7          4.1         1.0 versicolor
+69           6.2         2.2          4.5         1.5 versicolor
+70           5.6         2.5          3.9         1.1 versicolor
+71           5.9         3.2          4.8         1.8 versicolor
+72           6.1         2.8          4.0         1.3 versicolor
+73           6.3         2.5          4.9         1.5 versicolor
+74           6.1         2.8          4.7         1.2 versicolor
+75           6.4         2.9          4.3         1.3 versicolor
+76           6.6         3.0          4.4         1.4 versicolor
+77           6.8         2.8          4.8         1.4 versicolor
+78           6.7         3.0          5.0         1.7 versicolor
+79           6.0         2.9          4.5         1.5 versicolor
+80           5.7         2.6          3.5         1.0 versicolor
+81           5.5         2.4          3.8         1.1 versicolor
+82           5.5         2.4          3.7         1.0 versicolor
+83           5.8         2.7          3.9         1.2 versicolor
+84           6.0         2.7          5.1         1.6 versicolor
+85           5.4         3.0          4.5         1.5 versicolor
+86           6.0         3.4          4.5         1.6 versicolor
+87           6.7         3.1          4.7         1.5 versicolor
+88           6.3         2.3          4.4         1.3 versicolor
+89           5.6         3.0          4.1         1.3 versicolor
+90           5.5         2.5          4.0         1.3 versicolor
+91           5.5         2.6          4.4         1.2 versicolor
+92           6.1         3.0          4.6         1.4 versicolor
+93           5.8         2.6          4.0         1.2 versicolor
+94           5.0         2.3          3.3         1.0 versicolor
+95           5.6         2.7          4.2         1.3 versicolor
+96           5.7         3.0          4.2         1.2 versicolor
+97           5.7         2.9          4.2         1.3 versicolor
+98           6.2         2.9          4.3         1.3 versicolor
+99           5.1         2.5          3.0         1.1 versicolor
+100          5.7         2.8          4.1         1.3 versicolor
+101          6.3         3.3          6.0         2.5  virginica
+102          5.8         2.7          5.1         1.9  virginica
+103          7.1         3.0          5.9         2.1  virginica
+104          6.3         2.9          5.6         1.8  virginica
+105          6.5         3.0          5.8         2.2  virginica
+106          7.6         3.0          6.6         2.1  virginica
+107          4.9         2.5          4.5         1.7  virginica
+108          7.3         2.9          6.3         1.8  virginica
+109          6.7         2.5          5.8         1.8  virginica
+110          7.2         3.6          6.1         2.5  virginica
+111          6.5         3.2          5.1         2.0  virginica
+112          6.4         2.7          5.3         1.9  virginica
+113          6.8         3.0          5.5         2.1  virginica
+114          5.7         2.5          5.0         2.0  virginica
+115          5.8         2.8          5.1         2.4  virginica
+116          6.4         3.2          5.3         2.3  virginica
+117          6.5         3.0          5.5         1.8  virginica
+118          7.7         3.8          6.7         2.2  virginica
+119          7.7         2.6          6.9         2.3  virginica
+120          6.0         2.2          5.0         1.5  virginica
+121          6.9         3.2          5.7         2.3  virginica
+122          5.6         2.8          4.9         2.0  virginica
+123          7.7         2.8          6.7         2.0  virginica
+124          6.3         2.7          4.9         1.8  virginica
+125          6.7         3.3          5.7         2.1  virginica
+126          7.2         3.2          6.0         1.8  virginica
+127          6.2         2.8          4.8         1.8  virginica
+128          6.1         3.0          4.9         1.8  virginica
+129          6.4         2.8          5.6         2.1  virginica
+130          7.2         3.0          5.8         1.6  virginica
+131          7.4         2.8          6.1         1.9  virginica
+132          7.9         3.8          6.4         2.0  virginica
+133          6.4         2.8          5.6         2.2  virginica
+134          6.3         2.8          5.1         1.5  virginica
+135          6.1         2.6          5.6         1.4  virginica
+136          7.7         3.0          6.1         2.3  virginica
+137          6.3         3.4          5.6         2.4  virginica
+138          6.4         3.1          5.5         1.8  virginica
+139          6.0         3.0          4.8         1.8  virginica
+140          6.9         3.1          5.4         2.1  virginica
+141          6.7         3.1          5.6         2.4  virginica
+142          6.9         3.1          5.1         2.3  virginica
+143          5.8         2.7          5.1         1.9  virginica
+144          6.8         3.2          5.9         2.3  virginica
+145          6.7         3.3          5.7         2.5  virginica
+146          6.7         3.0          5.2         2.3  virginica
+147          6.3         2.5          5.0         1.9  virginica
+148          6.5         3.0          5.2         2.0  virginica
+149          6.2         3.4          5.4         2.3  virginica
+150          5.9         3.0          5.1         1.8  virginica</code></pre>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb17-2"><a href=""></a><span class="fu">as_tibble</span>(iris)</span>
+<span id="cb17-3"><a href=""></a></span>
+<span id="cb17-4"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code># A tibble: 150 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+ 1          5.1         3.5          1.4         0.2 setosa 
+ 2          4.9         3            1.4         0.2 setosa 
+ 3          4.7         3.2          1.3         0.2 setosa 
+ 4          4.6         3.1          1.5         0.2 setosa 
+ 5          5           3.6          1.4         0.2 setosa 
+ 6          5.4         3.9          1.7         0.4 setosa 
+ 7          4.6         3.4          1.4         0.3 setosa 
+ 8          5           3.4          1.5         0.2 setosa 
+ 9          4.4         2.9          1.4         0.2 setosa 
+10          4.9         3.1          1.5         0.1 setosa 
+# ℹ 140 more rows</code></pre>
+</div>
+</div></div>
 </section></section>
 <section>
 <section id="reading-data-into-r" class="title-slide slide level1 center">
@@ -485,23 +724,23 @@ A2 20 22 24</code></pre>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="co"># loading haven package</span></span>
-<span id="cb11-2"><a href=""></a><span class="fu">library</span>(haven)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="co"># loading haven package</span></span>
+<span id="cb19-2"><a href=""></a><span class="fu">library</span>(haven)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co"># SPSS</span></span>
-<span id="cb12-2"><a href=""></a><span class="fu">read_sav</span>(<span class="st">"path/data.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="co"># SPSS</span></span>
+<span id="cb20-2"><a href=""></a><span class="fu">read_sav</span>(<span class="st">"path/data.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="co"># Stata</span></span>
-<span id="cb13-2"><a href=""></a><span class="fu">read_dta</span>(<span class="st">"path/data.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="co"># Stata</span></span>
+<span id="cb21-2"><a href=""></a><span class="fu">read_dta</span>(<span class="st">"path/data.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="co"># SAS</span></span>
-<span id="cb14-2"><a href=""></a><span class="fu">read_sas</span>(<span class="st">"path/data.sas7bdat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="co"># SAS</span></span>
+<span id="cb22-2"><a href=""></a><span class="fu">read_sas</span>(<span class="st">"path/data.sas7bdat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell" data-layout-align="center">
@@ -522,8 +761,8 @@ A2 20 22 24</code></pre>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">library</span>(readxl)</span>
-<span id="cb15-2"><a href=""></a><span class="fu">read_excel</span>(<span class="st">"path/dataset.xls"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">library</span>(readxl)</span>
+<span id="cb23-2"><a href=""></a><span class="fu">read_excel</span>(<span class="st">"path/dataset.xls"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <pre><code># A tibble: 32 × 11
@@ -560,23 +799,23 @@ A2 20 22 24</code></pre>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"readr"</span>)</span>
-<span id="cb17-2"><a href=""></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"readr"</span>)</span>
+<span id="cb25-2"><a href=""></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="co"># comma separated (CSV) files</span></span>
-<span id="cb18-2"><a href=""></a><span class="fu">read_csv</span>(<span class="st">"path/data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="co"># comma separated (CSV) files</span></span>
+<span id="cb26-2"><a href=""></a><span class="fu">read_csv</span>(<span class="st">"path/data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="co"># tab separated files</span></span>
-<span id="cb19-2"><a href=""></a><span class="fu">read_tsv</span>(<span class="st">"path/data.tsv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="co"># tab separated files</span></span>
+<span id="cb27-2"><a href=""></a><span class="fu">read_tsv</span>(<span class="st">"path/data.tsv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="co"># general delimited files</span></span>
-<span id="cb20-2"><a href=""></a><span class="fu">read_delim</span>(<span class="st">"path/data.delim"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="co"># general delimited files</span></span>
+<span id="cb28-2"><a href=""></a><span class="fu">read_delim</span>(<span class="st">"path/data.delim"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell" data-layout-align="center">
@@ -637,116 +876,6 @@ A2 20 22 24</code></pre>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>data</span>
-<span id="cb22-2"><a href=""></a><span class="co"># A tibble: 1,704 × 6</span></span>
-<span id="cb22-3"><a href=""></a>   country     continent  year lifeExp      pop gdpPercap</span>
-<span id="cb22-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>int<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb22-5"><a href=""></a> <span class="dv">1</span> Afghanistan Asia       <span class="dv">1952</span>    <span class="fl">28.8</span>  <span class="dv">8425333</span>      <span class="fl">779.</span></span>
-<span id="cb22-6"><a href=""></a> <span class="dv">2</span> Afghanistan Asia       <span class="dv">1957</span>    <span class="fl">30.3</span>  <span class="dv">9240934</span>      <span class="fl">821.</span></span>
-<span id="cb22-7"><a href=""></a> <span class="dv">3</span> Afghanistan Asia       <span class="dv">1962</span>    <span class="fl">32.0</span> <span class="dv">10267083</span>      <span class="fl">853.</span></span>
-<span id="cb22-8"><a href=""></a> <span class="dv">4</span> Afghanistan Asia       <span class="dv">1967</span>    <span class="fl">34.0</span> <span class="dv">11537966</span>      <span class="fl">836.</span></span>
-<span id="cb22-9"><a href=""></a> <span class="dv">5</span> Afghanistan Asia       <span class="dv">1972</span>    <span class="fl">36.1</span> <span class="dv">13079460</span>      <span class="fl">740.</span></span>
-<span id="cb22-10"><a href=""></a> <span class="dv">6</span> Afghanistan Asia       <span class="dv">1977</span>    <span class="fl">38.4</span> <span class="dv">14880372</span>      <span class="fl">786.</span></span>
-<span id="cb22-11"><a href=""></a> <span class="dv">7</span> Afghanistan Asia       <span class="dv">1982</span>    <span class="fl">39.9</span> <span class="dv">12881816</span>      <span class="fl">978.</span></span>
-<span id="cb22-12"><a href=""></a> <span class="dv">8</span> Afghanistan Asia       <span class="dv">1987</span>    <span class="fl">40.8</span> <span class="dv">13867957</span>      <span class="fl">852.</span></span>
-<span id="cb22-13"><a href=""></a> <span class="dv">9</span> Afghanistan Asia       <span class="dv">1992</span>    <span class="fl">41.7</span> <span class="dv">16317921</span>      <span class="fl">649.</span></span>
-<span id="cb22-14"><a href=""></a><span class="dv">10</span> Afghanistan Asia       <span class="dv">1997</span>    <span class="fl">41.8</span> <span class="dv">22227415</span>      <span class="fl">635.</span></span>
-<span id="cb22-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">select</span>(data, continent, country, pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">select</span>(data, continent, country, pop)</span>
-<span id="cb24-2"><a href=""></a><span class="co"># A tibble: 1,704 × 3</span></span>
-<span id="cb24-3"><a href=""></a>   continent country          pop</span>
-<span id="cb24-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>fct<span class="sc">&gt;</span>          <span class="er">&lt;</span>int<span class="sc">&gt;</span></span>
-<span id="cb24-5"><a href=""></a> <span class="dv">1</span> Asia      Afghanistan  <span class="dv">8425333</span></span>
-<span id="cb24-6"><a href=""></a> <span class="dv">2</span> Asia      Afghanistan  <span class="dv">9240934</span></span>
-<span id="cb24-7"><a href=""></a> <span class="dv">3</span> Asia      Afghanistan <span class="dv">10267083</span></span>
-<span id="cb24-8"><a href=""></a> <span class="dv">4</span> Asia      Afghanistan <span class="dv">11537966</span></span>
-<span id="cb24-9"><a href=""></a> <span class="dv">5</span> Asia      Afghanistan <span class="dv">13079460</span></span>
-<span id="cb24-10"><a href=""></a> <span class="dv">6</span> Asia      Afghanistan <span class="dv">14880372</span></span>
-<span id="cb24-11"><a href=""></a> <span class="dv">7</span> Asia      Afghanistan <span class="dv">12881816</span></span>
-<span id="cb24-12"><a href=""></a> <span class="dv">8</span> Asia      Afghanistan <span class="dv">13867957</span></span>
-<span id="cb24-13"><a href=""></a> <span class="dv">9</span> Asia      Afghanistan <span class="dv">16317921</span></span>
-<span id="cb24-14"><a href=""></a><span class="dv">10</span> Asia      Afghanistan <span class="dv">22227415</span></span>
-<span id="cb24-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div></div>
-</section>
-<section id="select-1" class="slide level2">
-<h2><code>select()</code></h2>
-<p>We can also <strong>remove</strong> variables with a <strong><code>-</code></strong> (minus)</p>
-<div class="columns">
-<div class="column">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>data</span>
-<span id="cb26-2"><a href=""></a><span class="co"># A tibble: 1,704 × 6</span></span>
-<span id="cb26-3"><a href=""></a>   country     continent  year lifeExp      pop gdpPercap</span>
-<span id="cb26-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>int<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb26-5"><a href=""></a> <span class="dv">1</span> Afghanistan Asia       <span class="dv">1952</span>    <span class="fl">28.8</span>  <span class="dv">8425333</span>      <span class="fl">779.</span></span>
-<span id="cb26-6"><a href=""></a> <span class="dv">2</span> Afghanistan Asia       <span class="dv">1957</span>    <span class="fl">30.3</span>  <span class="dv">9240934</span>      <span class="fl">821.</span></span>
-<span id="cb26-7"><a href=""></a> <span class="dv">3</span> Afghanistan Asia       <span class="dv">1962</span>    <span class="fl">32.0</span> <span class="dv">10267083</span>      <span class="fl">853.</span></span>
-<span id="cb26-8"><a href=""></a> <span class="dv">4</span> Afghanistan Asia       <span class="dv">1967</span>    <span class="fl">34.0</span> <span class="dv">11537966</span>      <span class="fl">836.</span></span>
-<span id="cb26-9"><a href=""></a> <span class="dv">5</span> Afghanistan Asia       <span class="dv">1972</span>    <span class="fl">36.1</span> <span class="dv">13079460</span>      <span class="fl">740.</span></span>
-<span id="cb26-10"><a href=""></a> <span class="dv">6</span> Afghanistan Asia       <span class="dv">1977</span>    <span class="fl">38.4</span> <span class="dv">14880372</span>      <span class="fl">786.</span></span>
-<span id="cb26-11"><a href=""></a> <span class="dv">7</span> Afghanistan Asia       <span class="dv">1982</span>    <span class="fl">39.9</span> <span class="dv">12881816</span>      <span class="fl">978.</span></span>
-<span id="cb26-12"><a href=""></a> <span class="dv">8</span> Afghanistan Asia       <span class="dv">1987</span>    <span class="fl">40.8</span> <span class="dv">13867957</span>      <span class="fl">852.</span></span>
-<span id="cb26-13"><a href=""></a> <span class="dv">9</span> Afghanistan Asia       <span class="dv">1992</span>    <span class="fl">41.7</span> <span class="dv">16317921</span>      <span class="fl">649.</span></span>
-<span id="cb26-14"><a href=""></a><span class="dv">10</span> Afghanistan Asia       <span class="dv">1997</span>    <span class="fl">41.8</span> <span class="dv">22227415</span>      <span class="fl">635.</span></span>
-<span id="cb26-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div><div class="column">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="fu">select</span>(data, <span class="sc">-</span>year, <span class="sc">-</span>pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">select</span>(data, <span class="sc">-</span>year, <span class="sc">-</span>pop)</span>
-<span id="cb28-2"><a href=""></a><span class="co"># A tibble: 1,704 × 4</span></span>
-<span id="cb28-3"><a href=""></a>   country     continent lifeExp gdpPercap</span>
-<span id="cb28-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb28-5"><a href=""></a> <span class="dv">1</span> Afghanistan Asia         <span class="fl">28.8</span>      <span class="fl">779.</span></span>
-<span id="cb28-6"><a href=""></a> <span class="dv">2</span> Afghanistan Asia         <span class="fl">30.3</span>      <span class="fl">821.</span></span>
-<span id="cb28-7"><a href=""></a> <span class="dv">3</span> Afghanistan Asia         <span class="fl">32.0</span>      <span class="fl">853.</span></span>
-<span id="cb28-8"><a href=""></a> <span class="dv">4</span> Afghanistan Asia         <span class="fl">34.0</span>      <span class="fl">836.</span></span>
-<span id="cb28-9"><a href=""></a> <span class="dv">5</span> Afghanistan Asia         <span class="fl">36.1</span>      <span class="fl">740.</span></span>
-<span id="cb28-10"><a href=""></a> <span class="dv">6</span> Afghanistan Asia         <span class="fl">38.4</span>      <span class="fl">786.</span></span>
-<span id="cb28-11"><a href=""></a> <span class="dv">7</span> Afghanistan Asia         <span class="fl">39.9</span>      <span class="fl">978.</span></span>
-<span id="cb28-12"><a href=""></a> <span class="dv">8</span> Afghanistan Asia         <span class="fl">40.8</span>      <span class="fl">852.</span></span>
-<span id="cb28-13"><a href=""></a> <span class="dv">9</span> Afghanistan Asia         <span class="fl">41.7</span>      <span class="fl">649.</span></span>
-<span id="cb28-14"><a href=""></a><span class="dv">10</span> Afghanistan Asia         <span class="fl">41.8</span>      <span class="fl">635.</span></span>
-<span id="cb28-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div></div>
-</section>
-<section id="select-2" class="slide level2">
-<h2><code>select()</code></h2>
-<p><strong>Selection helpers</strong></p>
-<p>These <em>selection helpers</em> match variables according to a given pattern.</p>
-<ul>
-<li><p><code>starts_with()</code> starts with a prefix</p></li>
-<li><p><code>ends_with()</code> ends with a suffix</p></li>
-<li><p><code>contains()</code> contains a literal string</p></li>
-<li><p><code>matches()</code> matches regular expression</p></li>
-</ul>
-</section>
-<section id="filter" class="slide level2">
-<h2><code>filter()</code></h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
@@ -769,40 +898,31 @@ A2 20 22 24</code></pre>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">filter</span>(data, country <span class="sc">==</span> <span class="st">"Philippines"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">select</span>(data, continent, country, pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">filter</span>(data, country <span class="sc">==</span> <span class="st">"Philippines"</span>)</span>
-<span id="cb32-2"><a href=""></a><span class="co"># A tibble: 12 × 6</span></span>
-<span id="cb32-3"><a href=""></a>   country     continent  year lifeExp      pop gdpPercap</span>
-<span id="cb32-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>int<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb32-5"><a href=""></a> <span class="dv">1</span> Philippines Asia       <span class="dv">1952</span>    <span class="fl">47.8</span> <span class="dv">22438691</span>     <span class="fl">1273.</span></span>
-<span id="cb32-6"><a href=""></a> <span class="dv">2</span> Philippines Asia       <span class="dv">1957</span>    <span class="fl">51.3</span> <span class="dv">26072194</span>     <span class="fl">1548.</span></span>
-<span id="cb32-7"><a href=""></a> <span class="dv">3</span> Philippines Asia       <span class="dv">1962</span>    <span class="fl">54.8</span> <span class="dv">30325264</span>     <span class="fl">1650.</span></span>
-<span id="cb32-8"><a href=""></a> <span class="dv">4</span> Philippines Asia       <span class="dv">1967</span>    <span class="fl">56.4</span> <span class="dv">35356600</span>     <span class="fl">1814.</span></span>
-<span id="cb32-9"><a href=""></a> <span class="dv">5</span> Philippines Asia       <span class="dv">1972</span>    <span class="fl">58.1</span> <span class="dv">40850141</span>     <span class="fl">1989.</span></span>
-<span id="cb32-10"><a href=""></a> <span class="dv">6</span> Philippines Asia       <span class="dv">1977</span>    <span class="fl">60.1</span> <span class="dv">46850962</span>     <span class="fl">2373.</span></span>
-<span id="cb32-11"><a href=""></a> <span class="dv">7</span> Philippines Asia       <span class="dv">1982</span>    <span class="fl">62.1</span> <span class="dv">53456774</span>     <span class="fl">2603.</span></span>
-<span id="cb32-12"><a href=""></a> <span class="dv">8</span> Philippines Asia       <span class="dv">1987</span>    <span class="fl">64.2</span> <span class="dv">60017788</span>     <span class="fl">2190.</span></span>
-<span id="cb32-13"><a href=""></a> <span class="dv">9</span> Philippines Asia       <span class="dv">1992</span>    <span class="fl">66.5</span> <span class="dv">67185766</span>     <span class="fl">2279.</span></span>
-<span id="cb32-14"><a href=""></a><span class="dv">10</span> Philippines Asia       <span class="dv">1997</span>    <span class="fl">68.6</span> <span class="dv">75012988</span>     <span class="fl">2537.</span></span>
-<span id="cb32-15"><a href=""></a><span class="dv">11</span> Philippines Asia       <span class="dv">2002</span>    <span class="fl">70.3</span> <span class="dv">82995088</span>     <span class="fl">2651.</span></span>
-<span id="cb32-16"><a href=""></a><span class="dv">12</span> Philippines Asia       <span class="dv">2007</span>    <span class="fl">71.7</span> <span class="dv">91077287</span>     <span class="fl">3190.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">select</span>(data, continent, country, pop)</span>
+<span id="cb32-2"><a href=""></a><span class="co"># A tibble: 1,704 × 3</span></span>
+<span id="cb32-3"><a href=""></a>   continent country          pop</span>
+<span id="cb32-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>fct<span class="sc">&gt;</span>          <span class="er">&lt;</span>int<span class="sc">&gt;</span></span>
+<span id="cb32-5"><a href=""></a> <span class="dv">1</span> Asia      Afghanistan  <span class="dv">8425333</span></span>
+<span id="cb32-6"><a href=""></a> <span class="dv">2</span> Asia      Afghanistan  <span class="dv">9240934</span></span>
+<span id="cb32-7"><a href=""></a> <span class="dv">3</span> Asia      Afghanistan <span class="dv">10267083</span></span>
+<span id="cb32-8"><a href=""></a> <span class="dv">4</span> Asia      Afghanistan <span class="dv">11537966</span></span>
+<span id="cb32-9"><a href=""></a> <span class="dv">5</span> Asia      Afghanistan <span class="dv">13079460</span></span>
+<span id="cb32-10"><a href=""></a> <span class="dv">6</span> Asia      Afghanistan <span class="dv">14880372</span></span>
+<span id="cb32-11"><a href=""></a> <span class="dv">7</span> Asia      Afghanistan <span class="dv">12881816</span></span>
+<span id="cb32-12"><a href=""></a> <span class="dv">8</span> Asia      Afghanistan <span class="dv">13867957</span></span>
+<span id="cb32-13"><a href=""></a> <span class="dv">9</span> Asia      Afghanistan <span class="dv">16317921</span></span>
+<span id="cb32-14"><a href=""></a><span class="dv">10</span> Asia      Afghanistan <span class="dv">22227415</span></span>
+<span id="cb32-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section>
-<section id="mutate" class="slide level2">
-<h2><code>mutate()</code></h2>
-<p>The <code>mutate</code> function will take a statement similar to this:</p>
-<ul>
-<li><p><code>variable_name</code> = <code>do_some_calculation</code></p></li>
-<li><p><code>variable_name</code> will be attached at the end of the dataset.</p></li>
-</ul>
-</section>
-<section id="mutate-1" class="slide level2">
-<h2><code>mutate()</code></h2>
-<p>Let’s calculate the <code>gdp</code></p>
+<section id="select-1" class="slide level2">
+<h2><code>select()</code></h2>
+<p>We can also <strong>remove</strong> variables with a <strong><code>-</code></strong> (minus)</p>
 <div class="columns">
 <div class="column">
 <div class="cell">
@@ -828,36 +948,43 @@ A2 20 22 24</code></pre>
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="fu">mutate</span>(data, <span class="at">GDP =</span> gdpPercap <span class="sc">*</span> pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="fu">select</span>(data, <span class="sc">-</span>year, <span class="sc">-</span>pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="fu">mutate</span>(data, <span class="at">GDP =</span> gdpPercap <span class="sc">*</span> pop)</span>
-<span id="cb36-2"><a href=""></a><span class="co"># A tibble: 1,704 × 7</span></span>
-<span id="cb36-3"><a href=""></a>   country     continent  year lifeExp      pop gdpPercap          GDP</span>
-<span id="cb36-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>int<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>        <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb36-5"><a href=""></a> <span class="dv">1</span> Afghanistan Asia       <span class="dv">1952</span>    <span class="fl">28.8</span>  <span class="dv">8425333</span>      <span class="fl">779.</span>  <span class="fl">6567086330.</span></span>
-<span id="cb36-6"><a href=""></a> <span class="dv">2</span> Afghanistan Asia       <span class="dv">1957</span>    <span class="fl">30.3</span>  <span class="dv">9240934</span>      <span class="fl">821.</span>  <span class="fl">7585448670.</span></span>
-<span id="cb36-7"><a href=""></a> <span class="dv">3</span> Afghanistan Asia       <span class="dv">1962</span>    <span class="fl">32.0</span> <span class="dv">10267083</span>      <span class="fl">853.</span>  <span class="fl">8758855797.</span></span>
-<span id="cb36-8"><a href=""></a> <span class="dv">4</span> Afghanistan Asia       <span class="dv">1967</span>    <span class="fl">34.0</span> <span class="dv">11537966</span>      <span class="fl">836.</span>  <span class="fl">9648014150.</span></span>
-<span id="cb36-9"><a href=""></a> <span class="dv">5</span> Afghanistan Asia       <span class="dv">1972</span>    <span class="fl">36.1</span> <span class="dv">13079460</span>      <span class="fl">740.</span>  <span class="fl">9678553274.</span></span>
-<span id="cb36-10"><a href=""></a> <span class="dv">6</span> Afghanistan Asia       <span class="dv">1977</span>    <span class="fl">38.4</span> <span class="dv">14880372</span>      <span class="fl">786.</span> <span class="fl">11697659231.</span></span>
-<span id="cb36-11"><a href=""></a> <span class="dv">7</span> Afghanistan Asia       <span class="dv">1982</span>    <span class="fl">39.9</span> <span class="dv">12881816</span>      <span class="fl">978.</span> <span class="fl">12598563401.</span></span>
-<span id="cb36-12"><a href=""></a> <span class="dv">8</span> Afghanistan Asia       <span class="dv">1987</span>    <span class="fl">40.8</span> <span class="dv">13867957</span>      <span class="fl">852.</span> <span class="fl">11820990309.</span></span>
-<span id="cb36-13"><a href=""></a> <span class="dv">9</span> Afghanistan Asia       <span class="dv">1992</span>    <span class="fl">41.7</span> <span class="dv">16317921</span>      <span class="fl">649.</span> <span class="fl">10595901589.</span></span>
-<span id="cb36-14"><a href=""></a><span class="dv">10</span> Afghanistan Asia       <span class="dv">1997</span>    <span class="fl">41.8</span> <span class="dv">22227415</span>      <span class="fl">635.</span> <span class="fl">14121995875.</span></span>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="fu">select</span>(data, <span class="sc">-</span>year, <span class="sc">-</span>pop)</span>
+<span id="cb36-2"><a href=""></a><span class="co"># A tibble: 1,704 × 4</span></span>
+<span id="cb36-3"><a href=""></a>   country     continent lifeExp gdpPercap</span>
+<span id="cb36-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb36-5"><a href=""></a> <span class="dv">1</span> Afghanistan Asia         <span class="fl">28.8</span>      <span class="fl">779.</span></span>
+<span id="cb36-6"><a href=""></a> <span class="dv">2</span> Afghanistan Asia         <span class="fl">30.3</span>      <span class="fl">821.</span></span>
+<span id="cb36-7"><a href=""></a> <span class="dv">3</span> Afghanistan Asia         <span class="fl">32.0</span>      <span class="fl">853.</span></span>
+<span id="cb36-8"><a href=""></a> <span class="dv">4</span> Afghanistan Asia         <span class="fl">34.0</span>      <span class="fl">836.</span></span>
+<span id="cb36-9"><a href=""></a> <span class="dv">5</span> Afghanistan Asia         <span class="fl">36.1</span>      <span class="fl">740.</span></span>
+<span id="cb36-10"><a href=""></a> <span class="dv">6</span> Afghanistan Asia         <span class="fl">38.4</span>      <span class="fl">786.</span></span>
+<span id="cb36-11"><a href=""></a> <span class="dv">7</span> Afghanistan Asia         <span class="fl">39.9</span>      <span class="fl">978.</span></span>
+<span id="cb36-12"><a href=""></a> <span class="dv">8</span> Afghanistan Asia         <span class="fl">40.8</span>      <span class="fl">852.</span></span>
+<span id="cb36-13"><a href=""></a> <span class="dv">9</span> Afghanistan Asia         <span class="fl">41.7</span>      <span class="fl">649.</span></span>
+<span id="cb36-14"><a href=""></a><span class="dv">10</span> Afghanistan Asia         <span class="fl">41.8</span>      <span class="fl">635.</span></span>
 <span id="cb36-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section>
-<section id="rename" class="slide level2">
-<h2><code>rename()</code></h2>
-<p>Changes the variable name while keeping all else intact.</p>
+<section id="select-2" class="slide level2">
+<h2><code>select()</code></h2>
+<p><strong>Selection helpers</strong></p>
+<p>These <em>selection helpers</em> match variables according to a given pattern.</p>
 <ul>
-<li><code>new_variable_name</code> = <code>old_variable_name</code></li>
+<li><p><code>starts_with()</code> starts with a prefix</p></li>
+<li><p><code>ends_with()</code> ends with a suffix</p></li>
+<li><p><code>contains()</code> contains a literal string</p></li>
+<li><p><code>matches()</code> matches regular expression</p></li>
 </ul>
+</section>
+<section id="filter" class="slide level2">
+<h2><code>filter()</code></h2>
 <div class="columns">
-<div class="column">
+<div class="column" style="width:50%;">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -879,36 +1006,44 @@ A2 20 22 24</code></pre>
 <span id="cb38-14"><a href=""></a><span class="dv">10</span> Afghanistan Asia       <span class="dv">1997</span>    <span class="fl">41.8</span> <span class="dv">22227415</span>      <span class="fl">635.</span></span>
 <span id="cb38-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div><div class="column">
+</div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="fu">rename</span>(data, <span class="at">population =</span> pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="fu">filter</span>(data, country <span class="sc">==</span> <span class="st">"Philippines"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="fu">rename</span>(data, <span class="at">population =</span> pop)</span>
-<span id="cb40-2"><a href=""></a><span class="co"># A tibble: 1,704 × 6</span></span>
-<span id="cb40-3"><a href=""></a>   country     continent  year lifeExp population gdpPercap</span>
-<span id="cb40-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>      <span class="er">&lt;</span>int<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb40-5"><a href=""></a> <span class="dv">1</span> Afghanistan Asia       <span class="dv">1952</span>    <span class="fl">28.8</span>    <span class="dv">8425333</span>      <span class="fl">779.</span></span>
-<span id="cb40-6"><a href=""></a> <span class="dv">2</span> Afghanistan Asia       <span class="dv">1957</span>    <span class="fl">30.3</span>    <span class="dv">9240934</span>      <span class="fl">821.</span></span>
-<span id="cb40-7"><a href=""></a> <span class="dv">3</span> Afghanistan Asia       <span class="dv">1962</span>    <span class="fl">32.0</span>   <span class="dv">10267083</span>      <span class="fl">853.</span></span>
-<span id="cb40-8"><a href=""></a> <span class="dv">4</span> Afghanistan Asia       <span class="dv">1967</span>    <span class="fl">34.0</span>   <span class="dv">11537966</span>      <span class="fl">836.</span></span>
-<span id="cb40-9"><a href=""></a> <span class="dv">5</span> Afghanistan Asia       <span class="dv">1972</span>    <span class="fl">36.1</span>   <span class="dv">13079460</span>      <span class="fl">740.</span></span>
-<span id="cb40-10"><a href=""></a> <span class="dv">6</span> Afghanistan Asia       <span class="dv">1977</span>    <span class="fl">38.4</span>   <span class="dv">14880372</span>      <span class="fl">786.</span></span>
-<span id="cb40-11"><a href=""></a> <span class="dv">7</span> Afghanistan Asia       <span class="dv">1982</span>    <span class="fl">39.9</span>   <span class="dv">12881816</span>      <span class="fl">978.</span></span>
-<span id="cb40-12"><a href=""></a> <span class="dv">8</span> Afghanistan Asia       <span class="dv">1987</span>    <span class="fl">40.8</span>   <span class="dv">13867957</span>      <span class="fl">852.</span></span>
-<span id="cb40-13"><a href=""></a> <span class="dv">9</span> Afghanistan Asia       <span class="dv">1992</span>    <span class="fl">41.7</span>   <span class="dv">16317921</span>      <span class="fl">649.</span></span>
-<span id="cb40-14"><a href=""></a><span class="dv">10</span> Afghanistan Asia       <span class="dv">1997</span>    <span class="fl">41.8</span>   <span class="dv">22227415</span>      <span class="fl">635.</span></span>
-<span id="cb40-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="fu">filter</span>(data, country <span class="sc">==</span> <span class="st">"Philippines"</span>)</span>
+<span id="cb40-2"><a href=""></a><span class="co"># A tibble: 12 × 6</span></span>
+<span id="cb40-3"><a href=""></a>   country     continent  year lifeExp      pop gdpPercap</span>
+<span id="cb40-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>int<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb40-5"><a href=""></a> <span class="dv">1</span> Philippines Asia       <span class="dv">1952</span>    <span class="fl">47.8</span> <span class="dv">22438691</span>     <span class="fl">1273.</span></span>
+<span id="cb40-6"><a href=""></a> <span class="dv">2</span> Philippines Asia       <span class="dv">1957</span>    <span class="fl">51.3</span> <span class="dv">26072194</span>     <span class="fl">1548.</span></span>
+<span id="cb40-7"><a href=""></a> <span class="dv">3</span> Philippines Asia       <span class="dv">1962</span>    <span class="fl">54.8</span> <span class="dv">30325264</span>     <span class="fl">1650.</span></span>
+<span id="cb40-8"><a href=""></a> <span class="dv">4</span> Philippines Asia       <span class="dv">1967</span>    <span class="fl">56.4</span> <span class="dv">35356600</span>     <span class="fl">1814.</span></span>
+<span id="cb40-9"><a href=""></a> <span class="dv">5</span> Philippines Asia       <span class="dv">1972</span>    <span class="fl">58.1</span> <span class="dv">40850141</span>     <span class="fl">1989.</span></span>
+<span id="cb40-10"><a href=""></a> <span class="dv">6</span> Philippines Asia       <span class="dv">1977</span>    <span class="fl">60.1</span> <span class="dv">46850962</span>     <span class="fl">2373.</span></span>
+<span id="cb40-11"><a href=""></a> <span class="dv">7</span> Philippines Asia       <span class="dv">1982</span>    <span class="fl">62.1</span> <span class="dv">53456774</span>     <span class="fl">2603.</span></span>
+<span id="cb40-12"><a href=""></a> <span class="dv">8</span> Philippines Asia       <span class="dv">1987</span>    <span class="fl">64.2</span> <span class="dv">60017788</span>     <span class="fl">2190.</span></span>
+<span id="cb40-13"><a href=""></a> <span class="dv">9</span> Philippines Asia       <span class="dv">1992</span>    <span class="fl">66.5</span> <span class="dv">67185766</span>     <span class="fl">2279.</span></span>
+<span id="cb40-14"><a href=""></a><span class="dv">10</span> Philippines Asia       <span class="dv">1997</span>    <span class="fl">68.6</span> <span class="dv">75012988</span>     <span class="fl">2537.</span></span>
+<span id="cb40-15"><a href=""></a><span class="dv">11</span> Philippines Asia       <span class="dv">2002</span>    <span class="fl">70.3</span> <span class="dv">82995088</span>     <span class="fl">2651.</span></span>
+<span id="cb40-16"><a href=""></a><span class="dv">12</span> Philippines Asia       <span class="dv">2007</span>    <span class="fl">71.7</span> <span class="dv">91077287</span>     <span class="fl">3190.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section>
-<section id="arrange" class="slide level2">
-<h2><code>arrange()</code></h2>
-<p>You can order data by variable to show the highest or lowest values first.</p>
+<section id="mutate" class="slide level2">
+<h2><code>mutate()</code></h2>
+<p>The <code>mutate</code> function will take a statement similar to this:</p>
+<ul>
+<li><p><code>variable_name</code> = <code>do_some_calculation</code></p></li>
+<li><p><code>variable_name</code> will be attached at the end of the dataset.</p></li>
+</ul>
+</section>
+<section id="mutate-1" class="slide level2">
+<h2><code>mutate()</code></h2>
+<p>Let’s calculate the <code>gdp</code></p>
 <div class="columns">
 <div class="column">
-<p>consider <code>lifeExp</code> default is lowest first</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -931,44 +1066,35 @@ A2 20 22 24</code></pre>
 <span id="cb42-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
-<p><code>desc()</code> sort <code>lifeExp</code> from highest to lowest</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="fu">arrange</span>(data, <span class="fu">desc</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="fu">mutate</span>(data, <span class="at">GDP =</span> gdpPercap <span class="sc">*</span> pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="fu">arrange</span>(data, <span class="fu">desc</span>(lifeExp))</span>
-<span id="cb44-2"><a href=""></a><span class="co"># A tibble: 1,704 × 6</span></span>
-<span id="cb44-3"><a href=""></a>   country          continent  year lifeExp       pop gdpPercap</span>
-<span id="cb44-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>            <span class="er">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb44-5"><a href=""></a> <span class="dv">1</span> Japan            Asia       <span class="dv">2007</span>    <span class="fl">82.6</span> <span class="dv">127467972</span>    <span class="fl">31656.</span></span>
-<span id="cb44-6"><a href=""></a> <span class="dv">2</span> Hong Kong, China Asia       <span class="dv">2007</span>    <span class="fl">82.2</span>   <span class="dv">6980412</span>    <span class="fl">39725.</span></span>
-<span id="cb44-7"><a href=""></a> <span class="dv">3</span> Japan            Asia       <span class="dv">2002</span>    <span class="dv">82</span>   <span class="dv">127065841</span>    <span class="fl">28605.</span></span>
-<span id="cb44-8"><a href=""></a> <span class="dv">4</span> Iceland          Europe     <span class="dv">2007</span>    <span class="fl">81.8</span>    <span class="dv">301931</span>    <span class="fl">36181.</span></span>
-<span id="cb44-9"><a href=""></a> <span class="dv">5</span> Switzerland      Europe     <span class="dv">2007</span>    <span class="fl">81.7</span>   <span class="dv">7554661</span>    <span class="fl">37506.</span></span>
-<span id="cb44-10"><a href=""></a> <span class="dv">6</span> Hong Kong, China Asia       <span class="dv">2002</span>    <span class="fl">81.5</span>   <span class="dv">6762476</span>    <span class="fl">30209.</span></span>
-<span id="cb44-11"><a href=""></a> <span class="dv">7</span> Australia        Oceania    <span class="dv">2007</span>    <span class="fl">81.2</span>  <span class="dv">20434176</span>    <span class="fl">34435.</span></span>
-<span id="cb44-12"><a href=""></a> <span class="dv">8</span> Spain            Europe     <span class="dv">2007</span>    <span class="fl">80.9</span>  <span class="dv">40448191</span>    <span class="fl">28821.</span></span>
-<span id="cb44-13"><a href=""></a> <span class="dv">9</span> Sweden           Europe     <span class="dv">2007</span>    <span class="fl">80.9</span>   <span class="dv">9031088</span>    <span class="fl">33860.</span></span>
-<span id="cb44-14"><a href=""></a><span class="dv">10</span> Israel           Asia       <span class="dv">2007</span>    <span class="fl">80.7</span>   <span class="dv">6426679</span>    <span class="fl">25523.</span></span>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="fu">mutate</span>(data, <span class="at">GDP =</span> gdpPercap <span class="sc">*</span> pop)</span>
+<span id="cb44-2"><a href=""></a><span class="co"># A tibble: 1,704 × 7</span></span>
+<span id="cb44-3"><a href=""></a>   country     continent  year lifeExp      pop gdpPercap          GDP</span>
+<span id="cb44-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>int<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>        <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb44-5"><a href=""></a> <span class="dv">1</span> Afghanistan Asia       <span class="dv">1952</span>    <span class="fl">28.8</span>  <span class="dv">8425333</span>      <span class="fl">779.</span>  <span class="fl">6567086330.</span></span>
+<span id="cb44-6"><a href=""></a> <span class="dv">2</span> Afghanistan Asia       <span class="dv">1957</span>    <span class="fl">30.3</span>  <span class="dv">9240934</span>      <span class="fl">821.</span>  <span class="fl">7585448670.</span></span>
+<span id="cb44-7"><a href=""></a> <span class="dv">3</span> Afghanistan Asia       <span class="dv">1962</span>    <span class="fl">32.0</span> <span class="dv">10267083</span>      <span class="fl">853.</span>  <span class="fl">8758855797.</span></span>
+<span id="cb44-8"><a href=""></a> <span class="dv">4</span> Afghanistan Asia       <span class="dv">1967</span>    <span class="fl">34.0</span> <span class="dv">11537966</span>      <span class="fl">836.</span>  <span class="fl">9648014150.</span></span>
+<span id="cb44-9"><a href=""></a> <span class="dv">5</span> Afghanistan Asia       <span class="dv">1972</span>    <span class="fl">36.1</span> <span class="dv">13079460</span>      <span class="fl">740.</span>  <span class="fl">9678553274.</span></span>
+<span id="cb44-10"><a href=""></a> <span class="dv">6</span> Afghanistan Asia       <span class="dv">1977</span>    <span class="fl">38.4</span> <span class="dv">14880372</span>      <span class="fl">786.</span> <span class="fl">11697659231.</span></span>
+<span id="cb44-11"><a href=""></a> <span class="dv">7</span> Afghanistan Asia       <span class="dv">1982</span>    <span class="fl">39.9</span> <span class="dv">12881816</span>      <span class="fl">978.</span> <span class="fl">12598563401.</span></span>
+<span id="cb44-12"><a href=""></a> <span class="dv">8</span> Afghanistan Asia       <span class="dv">1987</span>    <span class="fl">40.8</span> <span class="dv">13867957</span>      <span class="fl">852.</span> <span class="fl">11820990309.</span></span>
+<span id="cb44-13"><a href=""></a> <span class="dv">9</span> Afghanistan Asia       <span class="dv">1992</span>    <span class="fl">41.7</span> <span class="dv">16317921</span>      <span class="fl">649.</span> <span class="fl">10595901589.</span></span>
+<span id="cb44-14"><a href=""></a><span class="dv">10</span> Afghanistan Asia       <span class="dv">1997</span>    <span class="fl">41.8</span> <span class="dv">22227415</span>      <span class="fl">635.</span> <span class="fl">14121995875.</span></span>
 <span id="cb44-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section>
-<section id="group_by-and-summarise" class="slide level2">
-<h2><code>group_by</code> and <code>summarise()</code></h2>
+<section id="rename" class="slide level2">
+<h2><code>rename()</code></h2>
+<p>Changes the variable name while keeping all else intact.</p>
 <ul>
-<li><p>Use when you want to aggregate your data (by groups).</p></li>
-<li><p>Sometimes we want to calculate group statistics.</p></li>
+<li><code>new_variable_name</code> = <code>old_variable_name</code></li>
 </ul>
-<p><br></p>
-<div class="{style=&quot;fig.align=&quot;center&quot;;&quot;}">
-<p><img src="https://learn.r-journalism.com/wrangling/dplyr/images/groupby.png" style="width: 60%"></p>
-</div>
-</section>
-<section id="group_by-and-summarise-1" class="slide level2">
-<h2><code>group_by</code> and <code>summarise()</code></h2>
-<p>Suppose we want to know the average population by continent.</p>
 <div class="columns">
 <div class="column">
 <div class="cell">
@@ -994,29 +1120,34 @@ A2 20 22 24</code></pre>
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a>grouped_by_continent <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data, continent)</span>
-<span id="cb47-2"><a href=""></a><span class="fu">summarise</span>(grouped_by_continent, <span class="at">avg_pop =</span> <span class="fu">mean</span>(pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="fu">rename</span>(data, <span class="at">population =</span> pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a>grouped_by_continent <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data, continent)</span>
-<span id="cb48-2"><a href=""></a><span class="fu">summarise</span>(grouped_by_continent, <span class="at">avg_pop =</span> <span class="fu">mean</span>(pop))</span>
-<span id="cb48-3"><a href=""></a><span class="co"># A tibble: 5 × 2</span></span>
-<span id="cb48-4"><a href=""></a>  continent   avg_pop</span>
-<span id="cb48-5"><a href=""></a>  <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>         <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb48-6"><a href=""></a><span class="dv">1</span> Africa     <span class="fl">9916003.</span></span>
-<span id="cb48-7"><a href=""></a><span class="dv">2</span> Americas  <span class="fl">24504795.</span></span>
-<span id="cb48-8"><a href=""></a><span class="dv">3</span> Asia      <span class="fl">77038722.</span></span>
-<span id="cb48-9"><a href=""></a><span class="dv">4</span> Europe    <span class="fl">17169765.</span></span>
-<span id="cb48-10"><a href=""></a><span class="dv">5</span> Oceania    <span class="fl">8874672.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="fu">rename</span>(data, <span class="at">population =</span> pop)</span>
+<span id="cb48-2"><a href=""></a><span class="co"># A tibble: 1,704 × 6</span></span>
+<span id="cb48-3"><a href=""></a>   country     continent  year lifeExp population gdpPercap</span>
+<span id="cb48-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>      <span class="er">&lt;</span>int<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb48-5"><a href=""></a> <span class="dv">1</span> Afghanistan Asia       <span class="dv">1952</span>    <span class="fl">28.8</span>    <span class="dv">8425333</span>      <span class="fl">779.</span></span>
+<span id="cb48-6"><a href=""></a> <span class="dv">2</span> Afghanistan Asia       <span class="dv">1957</span>    <span class="fl">30.3</span>    <span class="dv">9240934</span>      <span class="fl">821.</span></span>
+<span id="cb48-7"><a href=""></a> <span class="dv">3</span> Afghanistan Asia       <span class="dv">1962</span>    <span class="fl">32.0</span>   <span class="dv">10267083</span>      <span class="fl">853.</span></span>
+<span id="cb48-8"><a href=""></a> <span class="dv">4</span> Afghanistan Asia       <span class="dv">1967</span>    <span class="fl">34.0</span>   <span class="dv">11537966</span>      <span class="fl">836.</span></span>
+<span id="cb48-9"><a href=""></a> <span class="dv">5</span> Afghanistan Asia       <span class="dv">1972</span>    <span class="fl">36.1</span>   <span class="dv">13079460</span>      <span class="fl">740.</span></span>
+<span id="cb48-10"><a href=""></a> <span class="dv">6</span> Afghanistan Asia       <span class="dv">1977</span>    <span class="fl">38.4</span>   <span class="dv">14880372</span>      <span class="fl">786.</span></span>
+<span id="cb48-11"><a href=""></a> <span class="dv">7</span> Afghanistan Asia       <span class="dv">1982</span>    <span class="fl">39.9</span>   <span class="dv">12881816</span>      <span class="fl">978.</span></span>
+<span id="cb48-12"><a href=""></a> <span class="dv">8</span> Afghanistan Asia       <span class="dv">1987</span>    <span class="fl">40.8</span>   <span class="dv">13867957</span>      <span class="fl">852.</span></span>
+<span id="cb48-13"><a href=""></a> <span class="dv">9</span> Afghanistan Asia       <span class="dv">1992</span>    <span class="fl">41.7</span>   <span class="dv">16317921</span>      <span class="fl">649.</span></span>
+<span id="cb48-14"><a href=""></a><span class="dv">10</span> Afghanistan Asia       <span class="dv">1997</span>    <span class="fl">41.8</span>   <span class="dv">22227415</span>      <span class="fl">635.</span></span>
+<span id="cb48-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section>
-<section id="group_by-and-summarise-2" class="slide level2">
-<h2><code>group_by</code> and <code>summarise()</code></h2>
-<p>Suppose we want to know the average population by continent.</p>
+<section id="arrange" class="slide level2">
+<h2><code>arrange()</code></h2>
+<p>You can order data by variable to show the highest or lowest values first.</p>
 <div class="columns">
 <div class="column">
+<p>consider <code>lifeExp</code> default is lowest first</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1039,24 +1170,132 @@ A2 20 22 24</code></pre>
 <span id="cb50-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
+<p><code>desc()</code> sort <code>lifeExp</code> from highest to lowest</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>grouped_by_continent <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data, continent)</span>
-<span id="cb51-2"><a href=""></a>summarised_data <span class="ot">&lt;-</span> <span class="fu">summarise</span>(grouped_by_continent, <span class="at">avg_pop =</span> <span class="fu">mean</span>(pop))</span>
-<span id="cb51-3"><a href=""></a><span class="fu">arrange</span>(summarised_data, <span class="fu">desc</span>(avg_pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a><span class="fu">arrange</span>(data, <span class="fu">desc</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a>grouped_by_continent <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data, continent)</span>
-<span id="cb52-2"><a href=""></a>summarised_data <span class="ot">&lt;-</span> <span class="fu">summarise</span>(grouped_by_continent, <span class="at">avg_pop =</span> <span class="fu">mean</span>(pop))</span>
-<span id="cb52-3"><a href=""></a><span class="fu">arrange</span>(summarised_data, <span class="fu">desc</span>(avg_pop))</span>
-<span id="cb52-4"><a href=""></a><span class="co"># A tibble: 5 × 2</span></span>
-<span id="cb52-5"><a href=""></a>  continent   avg_pop</span>
-<span id="cb52-6"><a href=""></a>  <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>         <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb52-7"><a href=""></a><span class="dv">1</span> Asia      <span class="fl">77038722.</span></span>
-<span id="cb52-8"><a href=""></a><span class="dv">2</span> Americas  <span class="fl">24504795.</span></span>
-<span id="cb52-9"><a href=""></a><span class="dv">3</span> Europe    <span class="fl">17169765.</span></span>
-<span id="cb52-10"><a href=""></a><span class="dv">4</span> Africa     <span class="fl">9916003.</span></span>
-<span id="cb52-11"><a href=""></a><span class="dv">5</span> Oceania    <span class="fl">8874672.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a><span class="fu">arrange</span>(data, <span class="fu">desc</span>(lifeExp))</span>
+<span id="cb52-2"><a href=""></a><span class="co"># A tibble: 1,704 × 6</span></span>
+<span id="cb52-3"><a href=""></a>   country          continent  year lifeExp       pop gdpPercap</span>
+<span id="cb52-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>            <span class="er">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb52-5"><a href=""></a> <span class="dv">1</span> Japan            Asia       <span class="dv">2007</span>    <span class="fl">82.6</span> <span class="dv">127467972</span>    <span class="fl">31656.</span></span>
+<span id="cb52-6"><a href=""></a> <span class="dv">2</span> Hong Kong, China Asia       <span class="dv">2007</span>    <span class="fl">82.2</span>   <span class="dv">6980412</span>    <span class="fl">39725.</span></span>
+<span id="cb52-7"><a href=""></a> <span class="dv">3</span> Japan            Asia       <span class="dv">2002</span>    <span class="dv">82</span>   <span class="dv">127065841</span>    <span class="fl">28605.</span></span>
+<span id="cb52-8"><a href=""></a> <span class="dv">4</span> Iceland          Europe     <span class="dv">2007</span>    <span class="fl">81.8</span>    <span class="dv">301931</span>    <span class="fl">36181.</span></span>
+<span id="cb52-9"><a href=""></a> <span class="dv">5</span> Switzerland      Europe     <span class="dv">2007</span>    <span class="fl">81.7</span>   <span class="dv">7554661</span>    <span class="fl">37506.</span></span>
+<span id="cb52-10"><a href=""></a> <span class="dv">6</span> Hong Kong, China Asia       <span class="dv">2002</span>    <span class="fl">81.5</span>   <span class="dv">6762476</span>    <span class="fl">30209.</span></span>
+<span id="cb52-11"><a href=""></a> <span class="dv">7</span> Australia        Oceania    <span class="dv">2007</span>    <span class="fl">81.2</span>  <span class="dv">20434176</span>    <span class="fl">34435.</span></span>
+<span id="cb52-12"><a href=""></a> <span class="dv">8</span> Spain            Europe     <span class="dv">2007</span>    <span class="fl">80.9</span>  <span class="dv">40448191</span>    <span class="fl">28821.</span></span>
+<span id="cb52-13"><a href=""></a> <span class="dv">9</span> Sweden           Europe     <span class="dv">2007</span>    <span class="fl">80.9</span>   <span class="dv">9031088</span>    <span class="fl">33860.</span></span>
+<span id="cb52-14"><a href=""></a><span class="dv">10</span> Israel           Asia       <span class="dv">2007</span>    <span class="fl">80.7</span>   <span class="dv">6426679</span>    <span class="fl">25523.</span></span>
+<span id="cb52-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
+</section>
+<section id="group_by-and-summarise" class="slide level2">
+<h2><code>group_by</code> and <code>summarise()</code></h2>
+<ul>
+<li><p>Use when you want to aggregate your data (by groups).</p></li>
+<li><p>Sometimes we want to calculate group statistics.</p></li>
+</ul>
+<p><br></p>
+<div class="{style=&quot;fig.align=&quot;center&quot;;&quot;}">
+<p><img src="https://learn.r-journalism.com/wrangling/dplyr/images/groupby.png" style="width: 60%"></p>
+</div>
+</section>
+<section id="group_by-and-summarise-1" class="slide level2">
+<h2><code>group_by</code> and <code>summarise()</code></h2>
+<p>Suppose we want to know the average population by continent.</p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a>data</span>
+<span id="cb54-2"><a href=""></a><span class="co"># A tibble: 1,704 × 6</span></span>
+<span id="cb54-3"><a href=""></a>   country     continent  year lifeExp      pop gdpPercap</span>
+<span id="cb54-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>int<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb54-5"><a href=""></a> <span class="dv">1</span> Afghanistan Asia       <span class="dv">1952</span>    <span class="fl">28.8</span>  <span class="dv">8425333</span>      <span class="fl">779.</span></span>
+<span id="cb54-6"><a href=""></a> <span class="dv">2</span> Afghanistan Asia       <span class="dv">1957</span>    <span class="fl">30.3</span>  <span class="dv">9240934</span>      <span class="fl">821.</span></span>
+<span id="cb54-7"><a href=""></a> <span class="dv">3</span> Afghanistan Asia       <span class="dv">1962</span>    <span class="fl">32.0</span> <span class="dv">10267083</span>      <span class="fl">853.</span></span>
+<span id="cb54-8"><a href=""></a> <span class="dv">4</span> Afghanistan Asia       <span class="dv">1967</span>    <span class="fl">34.0</span> <span class="dv">11537966</span>      <span class="fl">836.</span></span>
+<span id="cb54-9"><a href=""></a> <span class="dv">5</span> Afghanistan Asia       <span class="dv">1972</span>    <span class="fl">36.1</span> <span class="dv">13079460</span>      <span class="fl">740.</span></span>
+<span id="cb54-10"><a href=""></a> <span class="dv">6</span> Afghanistan Asia       <span class="dv">1977</span>    <span class="fl">38.4</span> <span class="dv">14880372</span>      <span class="fl">786.</span></span>
+<span id="cb54-11"><a href=""></a> <span class="dv">7</span> Afghanistan Asia       <span class="dv">1982</span>    <span class="fl">39.9</span> <span class="dv">12881816</span>      <span class="fl">978.</span></span>
+<span id="cb54-12"><a href=""></a> <span class="dv">8</span> Afghanistan Asia       <span class="dv">1987</span>    <span class="fl">40.8</span> <span class="dv">13867957</span>      <span class="fl">852.</span></span>
+<span id="cb54-13"><a href=""></a> <span class="dv">9</span> Afghanistan Asia       <span class="dv">1992</span>    <span class="fl">41.7</span> <span class="dv">16317921</span>      <span class="fl">649.</span></span>
+<span id="cb54-14"><a href=""></a><span class="dv">10</span> Afghanistan Asia       <span class="dv">1997</span>    <span class="fl">41.8</span> <span class="dv">22227415</span>      <span class="fl">635.</span></span>
+<span id="cb54-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a>grouped_by_continent <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data, continent)</span>
+<span id="cb55-2"><a href=""></a><span class="fu">summarise</span>(grouped_by_continent, <span class="at">avg_pop =</span> <span class="fu">mean</span>(pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a>grouped_by_continent <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data, continent)</span>
+<span id="cb56-2"><a href=""></a><span class="fu">summarise</span>(grouped_by_continent, <span class="at">avg_pop =</span> <span class="fu">mean</span>(pop))</span>
+<span id="cb56-3"><a href=""></a><span class="co"># A tibble: 5 × 2</span></span>
+<span id="cb56-4"><a href=""></a>  continent   avg_pop</span>
+<span id="cb56-5"><a href=""></a>  <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>         <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb56-6"><a href=""></a><span class="dv">1</span> Africa     <span class="fl">9916003.</span></span>
+<span id="cb56-7"><a href=""></a><span class="dv">2</span> Americas  <span class="fl">24504795.</span></span>
+<span id="cb56-8"><a href=""></a><span class="dv">3</span> Asia      <span class="fl">77038722.</span></span>
+<span id="cb56-9"><a href=""></a><span class="dv">4</span> Europe    <span class="fl">17169765.</span></span>
+<span id="cb56-10"><a href=""></a><span class="dv">5</span> Oceania    <span class="fl">8874672.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
+</section>
+<section id="group_by-and-summarise-2" class="slide level2">
+<h2><code>group_by</code> and <code>summarise()</code></h2>
+<p>Suppose we want to know the average population by continent.</p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href=""></a>data</span>
+<span id="cb58-2"><a href=""></a><span class="co"># A tibble: 1,704 × 6</span></span>
+<span id="cb58-3"><a href=""></a>   country     continent  year lifeExp      pop gdpPercap</span>
+<span id="cb58-4"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>fct<span class="sc">&gt;</span>     <span class="er">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>int<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb58-5"><a href=""></a> <span class="dv">1</span> Afghanistan Asia       <span class="dv">1952</span>    <span class="fl">28.8</span>  <span class="dv">8425333</span>      <span class="fl">779.</span></span>
+<span id="cb58-6"><a href=""></a> <span class="dv">2</span> Afghanistan Asia       <span class="dv">1957</span>    <span class="fl">30.3</span>  <span class="dv">9240934</span>      <span class="fl">821.</span></span>
+<span id="cb58-7"><a href=""></a> <span class="dv">3</span> Afghanistan Asia       <span class="dv">1962</span>    <span class="fl">32.0</span> <span class="dv">10267083</span>      <span class="fl">853.</span></span>
+<span id="cb58-8"><a href=""></a> <span class="dv">4</span> Afghanistan Asia       <span class="dv">1967</span>    <span class="fl">34.0</span> <span class="dv">11537966</span>      <span class="fl">836.</span></span>
+<span id="cb58-9"><a href=""></a> <span class="dv">5</span> Afghanistan Asia       <span class="dv">1972</span>    <span class="fl">36.1</span> <span class="dv">13079460</span>      <span class="fl">740.</span></span>
+<span id="cb58-10"><a href=""></a> <span class="dv">6</span> Afghanistan Asia       <span class="dv">1977</span>    <span class="fl">38.4</span> <span class="dv">14880372</span>      <span class="fl">786.</span></span>
+<span id="cb58-11"><a href=""></a> <span class="dv">7</span> Afghanistan Asia       <span class="dv">1982</span>    <span class="fl">39.9</span> <span class="dv">12881816</span>      <span class="fl">978.</span></span>
+<span id="cb58-12"><a href=""></a> <span class="dv">8</span> Afghanistan Asia       <span class="dv">1987</span>    <span class="fl">40.8</span> <span class="dv">13867957</span>      <span class="fl">852.</span></span>
+<span id="cb58-13"><a href=""></a> <span class="dv">9</span> Afghanistan Asia       <span class="dv">1992</span>    <span class="fl">41.7</span> <span class="dv">16317921</span>      <span class="fl">649.</span></span>
+<span id="cb58-14"><a href=""></a><span class="dv">10</span> Afghanistan Asia       <span class="dv">1997</span>    <span class="fl">41.8</span> <span class="dv">22227415</span>      <span class="fl">635.</span></span>
+<span id="cb58-15"><a href=""></a><span class="co"># ℹ 1,694 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a>grouped_by_continent <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data, continent)</span>
+<span id="cb59-2"><a href=""></a>summarised_data <span class="ot">&lt;-</span> <span class="fu">summarise</span>(grouped_by_continent, <span class="at">avg_pop =</span> <span class="fu">mean</span>(pop))</span>
+<span id="cb59-3"><a href=""></a><span class="fu">arrange</span>(summarised_data, <span class="fu">desc</span>(avg_pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href=""></a>grouped_by_continent <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data, continent)</span>
+<span id="cb60-2"><a href=""></a>summarised_data <span class="ot">&lt;-</span> <span class="fu">summarise</span>(grouped_by_continent, <span class="at">avg_pop =</span> <span class="fu">mean</span>(pop))</span>
+<span id="cb60-3"><a href=""></a><span class="fu">arrange</span>(summarised_data, <span class="fu">desc</span>(avg_pop))</span>
+<span id="cb60-4"><a href=""></a><span class="co"># A tibble: 5 × 2</span></span>
+<span id="cb60-5"><a href=""></a>  continent   avg_pop</span>
+<span id="cb60-6"><a href=""></a>  <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>         <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb60-7"><a href=""></a><span class="dv">1</span> Asia      <span class="fl">77038722.</span></span>
+<span id="cb60-8"><a href=""></a><span class="dv">2</span> Americas  <span class="fl">24504795.</span></span>
+<span id="cb60-9"><a href=""></a><span class="dv">3</span> Europe    <span class="fl">17169765.</span></span>
+<span id="cb60-10"><a href=""></a><span class="dv">4</span> Africa     <span class="fl">9916003.</span></span>
+<span id="cb60-11"><a href=""></a><span class="dv">5</span> Oceania    <span class="fl">8874672.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section>
@@ -1084,45 +1323,45 @@ A2 20 22 24</code></pre>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a>grouped_by_continent <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data, continent)</span>
-<span id="cb53-2"><a href=""></a>summarised_data <span class="ot">&lt;-</span> <span class="fu">summarise</span>(grouped_by_continent, <span class="at">avg_pop =</span> <span class="fu">mean</span>(pop))</span>
-<span id="cb53-3"><a href=""></a><span class="fu">arrange</span>(summarised_data, <span class="fu">desc</span>(avg_pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a>grouped_by_continent <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data, continent)</span>
+<span id="cb61-2"><a href=""></a>summarised_data <span class="ot">&lt;-</span> <span class="fu">summarise</span>(grouped_by_continent, <span class="at">avg_pop =</span> <span class="fu">mean</span>(pop))</span>
+<span id="cb61-3"><a href=""></a><span class="fu">arrange</span>(summarised_data, <span class="fu">desc</span>(avg_pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a>grouped_by_continent <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data, continent)</span>
-<span id="cb54-2"><a href=""></a>summarised_data <span class="ot">&lt;-</span> <span class="fu">summarise</span>(grouped_by_continent, <span class="at">avg_pop =</span> <span class="fu">mean</span>(pop))</span>
-<span id="cb54-3"><a href=""></a><span class="fu">arrange</span>(summarised_data, <span class="fu">desc</span>(avg_pop))</span>
-<span id="cb54-4"><a href=""></a><span class="co"># A tibble: 5 × 2</span></span>
-<span id="cb54-5"><a href=""></a>  continent   avg_pop</span>
-<span id="cb54-6"><a href=""></a>  <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>         <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb54-7"><a href=""></a><span class="dv">1</span> Asia      <span class="fl">77038722.</span></span>
-<span id="cb54-8"><a href=""></a><span class="dv">2</span> Americas  <span class="fl">24504795.</span></span>
-<span id="cb54-9"><a href=""></a><span class="dv">3</span> Europe    <span class="fl">17169765.</span></span>
-<span id="cb54-10"><a href=""></a><span class="dv">4</span> Africa     <span class="fl">9916003.</span></span>
-<span id="cb54-11"><a href=""></a><span class="dv">5</span> Oceania    <span class="fl">8874672.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href=""></a>grouped_by_continent <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data, continent)</span>
+<span id="cb62-2"><a href=""></a>summarised_data <span class="ot">&lt;-</span> <span class="fu">summarise</span>(grouped_by_continent, <span class="at">avg_pop =</span> <span class="fu">mean</span>(pop))</span>
+<span id="cb62-3"><a href=""></a><span class="fu">arrange</span>(summarised_data, <span class="fu">desc</span>(avg_pop))</span>
+<span id="cb62-4"><a href=""></a><span class="co"># A tibble: 5 × 2</span></span>
+<span id="cb62-5"><a href=""></a>  continent   avg_pop</span>
+<span id="cb62-6"><a href=""></a>  <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>         <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb62-7"><a href=""></a><span class="dv">1</span> Asia      <span class="fl">77038722.</span></span>
+<span id="cb62-8"><a href=""></a><span class="dv">2</span> Americas  <span class="fl">24504795.</span></span>
+<span id="cb62-9"><a href=""></a><span class="dv">3</span> Europe    <span class="fl">17169765.</span></span>
+<span id="cb62-10"><a href=""></a><span class="dv">4</span> Africa     <span class="fl">9916003.</span></span>
+<span id="cb62-11"><a href=""></a><span class="dv">5</span> Oceania    <span class="fl">8874672.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb55-2"><a href=""></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> </span>
-<span id="cb55-3"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">avg_pop =</span> <span class="fu">mean</span>(pop)) <span class="sc">%&gt;%</span> </span>
-<span id="cb55-4"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb63-2"><a href=""></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> </span>
+<span id="cb63-3"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">avg_pop =</span> <span class="fu">mean</span>(pop)) <span class="sc">%&gt;%</span> </span>
+<span id="cb63-4"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb56-2"><a href=""></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> </span>
-<span id="cb56-3"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">avg_pop =</span> <span class="fu">mean</span>(pop)) <span class="sc">%&gt;%</span> </span>
-<span id="cb56-4"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_pop))</span>
-<span id="cb56-5"><a href=""></a><span class="co"># A tibble: 5 × 2</span></span>
-<span id="cb56-6"><a href=""></a>  continent   avg_pop</span>
-<span id="cb56-7"><a href=""></a>  <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>         <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb56-8"><a href=""></a><span class="dv">1</span> Asia      <span class="fl">77038722.</span></span>
-<span id="cb56-9"><a href=""></a><span class="dv">2</span> Americas  <span class="fl">24504795.</span></span>
-<span id="cb56-10"><a href=""></a><span class="dv">3</span> Europe    <span class="fl">17169765.</span></span>
-<span id="cb56-11"><a href=""></a><span class="dv">4</span> Africa     <span class="fl">9916003.</span></span>
-<span id="cb56-12"><a href=""></a><span class="dv">5</span> Oceania    <span class="fl">8874672.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb64-2"><a href=""></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> </span>
+<span id="cb64-3"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">avg_pop =</span> <span class="fu">mean</span>(pop)) <span class="sc">%&gt;%</span> </span>
+<span id="cb64-4"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_pop))</span>
+<span id="cb64-5"><a href=""></a><span class="co"># A tibble: 5 × 2</span></span>
+<span id="cb64-6"><a href=""></a>  continent   avg_pop</span>
+<span id="cb64-7"><a href=""></a>  <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>         <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb64-8"><a href=""></a><span class="dv">1</span> Asia      <span class="fl">77038722.</span></span>
+<span id="cb64-9"><a href=""></a><span class="dv">2</span> Americas  <span class="fl">24504795.</span></span>
+<span id="cb64-10"><a href=""></a><span class="dv">3</span> Europe    <span class="fl">17169765.</span></span>
+<span id="cb64-11"><a href=""></a><span class="dv">4</span> Africa     <span class="fl">9916003.</span></span>
+<span id="cb64-12"><a href=""></a><span class="dv">5</span> Oceania    <span class="fl">8874672.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section>
@@ -1132,59 +1371,59 @@ A2 20 22 24</code></pre>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a>filtered_by_asia <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, continent <span class="sc">==</span> <span class="st">"Asia"</span>)</span>
-<span id="cb57-2"><a href=""></a>grouped_by_country_year <span class="ot">&lt;-</span> <span class="fu">group_by</span>(filtered_by_asia, country, year)</span>
-<span id="cb57-3"><a href=""></a><span class="fu">summarise</span>(grouped_by_country_year, <span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href=""></a>filtered_by_asia <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, continent <span class="sc">==</span> <span class="st">"Asia"</span>)</span>
+<span id="cb65-2"><a href=""></a>grouped_by_country_year <span class="ot">&lt;-</span> <span class="fu">group_by</span>(filtered_by_asia, country, year)</span>
+<span id="cb65-3"><a href=""></a><span class="fu">summarise</span>(grouped_by_country_year, <span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href=""></a>filtered_by_asia <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, continent <span class="sc">==</span> <span class="st">"Asia"</span>)</span>
-<span id="cb58-2"><a href=""></a>grouped_by_country_year <span class="ot">&lt;-</span> <span class="fu">group_by</span>(filtered_by_asia, country, year)</span>
-<span id="cb58-3"><a href=""></a><span class="fu">summarise</span>(grouped_by_country_year, <span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span>
-<span id="cb58-4"><a href=""></a><span class="co"># A tibble: 396 × 3</span></span>
-<span id="cb58-5"><a href=""></a><span class="co"># Groups:   country [33]</span></span>
-<span id="cb58-6"><a href=""></a>   country      year avg_lifeExp</span>
-<span id="cb58-7"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>int<span class="sc">&gt;</span>       <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb58-8"><a href=""></a> <span class="dv">1</span> Afghanistan  <span class="dv">1952</span>        <span class="fl">28.8</span></span>
-<span id="cb58-9"><a href=""></a> <span class="dv">2</span> Afghanistan  <span class="dv">1957</span>        <span class="fl">30.3</span></span>
-<span id="cb58-10"><a href=""></a> <span class="dv">3</span> Afghanistan  <span class="dv">1962</span>        <span class="fl">32.0</span></span>
-<span id="cb58-11"><a href=""></a> <span class="dv">4</span> Afghanistan  <span class="dv">1967</span>        <span class="fl">34.0</span></span>
-<span id="cb58-12"><a href=""></a> <span class="dv">5</span> Afghanistan  <span class="dv">1972</span>        <span class="fl">36.1</span></span>
-<span id="cb58-13"><a href=""></a> <span class="dv">6</span> Afghanistan  <span class="dv">1977</span>        <span class="fl">38.4</span></span>
-<span id="cb58-14"><a href=""></a> <span class="dv">7</span> Afghanistan  <span class="dv">1982</span>        <span class="fl">39.9</span></span>
-<span id="cb58-15"><a href=""></a> <span class="dv">8</span> Afghanistan  <span class="dv">1987</span>        <span class="fl">40.8</span></span>
-<span id="cb58-16"><a href=""></a> <span class="dv">9</span> Afghanistan  <span class="dv">1992</span>        <span class="fl">41.7</span></span>
-<span id="cb58-17"><a href=""></a><span class="dv">10</span> Afghanistan  <span class="dv">1997</span>        <span class="fl">41.8</span></span>
-<span id="cb58-18"><a href=""></a><span class="co"># ℹ 386 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href=""></a>filtered_by_asia <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, continent <span class="sc">==</span> <span class="st">"Asia"</span>)</span>
+<span id="cb66-2"><a href=""></a>grouped_by_country_year <span class="ot">&lt;-</span> <span class="fu">group_by</span>(filtered_by_asia, country, year)</span>
+<span id="cb66-3"><a href=""></a><span class="fu">summarise</span>(grouped_by_country_year, <span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span>
+<span id="cb66-4"><a href=""></a><span class="co"># A tibble: 396 × 3</span></span>
+<span id="cb66-5"><a href=""></a><span class="co"># Groups:   country [33]</span></span>
+<span id="cb66-6"><a href=""></a>   country      year avg_lifeExp</span>
+<span id="cb66-7"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>int<span class="sc">&gt;</span>       <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb66-8"><a href=""></a> <span class="dv">1</span> Afghanistan  <span class="dv">1952</span>        <span class="fl">28.8</span></span>
+<span id="cb66-9"><a href=""></a> <span class="dv">2</span> Afghanistan  <span class="dv">1957</span>        <span class="fl">30.3</span></span>
+<span id="cb66-10"><a href=""></a> <span class="dv">3</span> Afghanistan  <span class="dv">1962</span>        <span class="fl">32.0</span></span>
+<span id="cb66-11"><a href=""></a> <span class="dv">4</span> Afghanistan  <span class="dv">1967</span>        <span class="fl">34.0</span></span>
+<span id="cb66-12"><a href=""></a> <span class="dv">5</span> Afghanistan  <span class="dv">1972</span>        <span class="fl">36.1</span></span>
+<span id="cb66-13"><a href=""></a> <span class="dv">6</span> Afghanistan  <span class="dv">1977</span>        <span class="fl">38.4</span></span>
+<span id="cb66-14"><a href=""></a> <span class="dv">7</span> Afghanistan  <span class="dv">1982</span>        <span class="fl">39.9</span></span>
+<span id="cb66-15"><a href=""></a> <span class="dv">8</span> Afghanistan  <span class="dv">1987</span>        <span class="fl">40.8</span></span>
+<span id="cb66-16"><a href=""></a> <span class="dv">9</span> Afghanistan  <span class="dv">1992</span>        <span class="fl">41.7</span></span>
+<span id="cb66-17"><a href=""></a><span class="dv">10</span> Afghanistan  <span class="dv">1997</span>        <span class="fl">41.8</span></span>
+<span id="cb66-18"><a href=""></a><span class="co"># ℹ 386 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb59-2"><a href=""></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Asia"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb59-3"><a href=""></a>  <span class="fu">group_by</span>(country, year) <span class="sc">%&gt;%</span> </span>
-<span id="cb59-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href=""></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb67-2"><a href=""></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Asia"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb67-3"><a href=""></a>  <span class="fu">group_by</span>(country, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb67-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href=""></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb60-2"><a href=""></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Asia"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb60-3"><a href=""></a>  <span class="fu">group_by</span>(country, year) <span class="sc">%&gt;%</span> </span>
-<span id="cb60-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span>
-<span id="cb60-5"><a href=""></a><span class="co"># A tibble: 396 × 3</span></span>
-<span id="cb60-6"><a href=""></a><span class="co"># Groups:   country [33]</span></span>
-<span id="cb60-7"><a href=""></a>   country      year avg_lifeExp</span>
-<span id="cb60-8"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>int<span class="sc">&gt;</span>       <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb60-9"><a href=""></a> <span class="dv">1</span> Afghanistan  <span class="dv">1952</span>        <span class="fl">28.8</span></span>
-<span id="cb60-10"><a href=""></a> <span class="dv">2</span> Afghanistan  <span class="dv">1957</span>        <span class="fl">30.3</span></span>
-<span id="cb60-11"><a href=""></a> <span class="dv">3</span> Afghanistan  <span class="dv">1962</span>        <span class="fl">32.0</span></span>
-<span id="cb60-12"><a href=""></a> <span class="dv">4</span> Afghanistan  <span class="dv">1967</span>        <span class="fl">34.0</span></span>
-<span id="cb60-13"><a href=""></a> <span class="dv">5</span> Afghanistan  <span class="dv">1972</span>        <span class="fl">36.1</span></span>
-<span id="cb60-14"><a href=""></a> <span class="dv">6</span> Afghanistan  <span class="dv">1977</span>        <span class="fl">38.4</span></span>
-<span id="cb60-15"><a href=""></a> <span class="dv">7</span> Afghanistan  <span class="dv">1982</span>        <span class="fl">39.9</span></span>
-<span id="cb60-16"><a href=""></a> <span class="dv">8</span> Afghanistan  <span class="dv">1987</span>        <span class="fl">40.8</span></span>
-<span id="cb60-17"><a href=""></a> <span class="dv">9</span> Afghanistan  <span class="dv">1992</span>        <span class="fl">41.7</span></span>
-<span id="cb60-18"><a href=""></a><span class="dv">10</span> Afghanistan  <span class="dv">1997</span>        <span class="fl">41.8</span></span>
-<span id="cb60-19"><a href=""></a><span class="co"># ℹ 386 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href=""></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb68-2"><a href=""></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Asia"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb68-3"><a href=""></a>  <span class="fu">group_by</span>(country, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb68-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span>
+<span id="cb68-5"><a href=""></a><span class="co"># A tibble: 396 × 3</span></span>
+<span id="cb68-6"><a href=""></a><span class="co"># Groups:   country [33]</span></span>
+<span id="cb68-7"><a href=""></a>   country      year avg_lifeExp</span>
+<span id="cb68-8"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>       <span class="er">&lt;</span>int<span class="sc">&gt;</span>       <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb68-9"><a href=""></a> <span class="dv">1</span> Afghanistan  <span class="dv">1952</span>        <span class="fl">28.8</span></span>
+<span id="cb68-10"><a href=""></a> <span class="dv">2</span> Afghanistan  <span class="dv">1957</span>        <span class="fl">30.3</span></span>
+<span id="cb68-11"><a href=""></a> <span class="dv">3</span> Afghanistan  <span class="dv">1962</span>        <span class="fl">32.0</span></span>
+<span id="cb68-12"><a href=""></a> <span class="dv">4</span> Afghanistan  <span class="dv">1967</span>        <span class="fl">34.0</span></span>
+<span id="cb68-13"><a href=""></a> <span class="dv">5</span> Afghanistan  <span class="dv">1972</span>        <span class="fl">36.1</span></span>
+<span id="cb68-14"><a href=""></a> <span class="dv">6</span> Afghanistan  <span class="dv">1977</span>        <span class="fl">38.4</span></span>
+<span id="cb68-15"><a href=""></a> <span class="dv">7</span> Afghanistan  <span class="dv">1982</span>        <span class="fl">39.9</span></span>
+<span id="cb68-16"><a href=""></a> <span class="dv">8</span> Afghanistan  <span class="dv">1987</span>        <span class="fl">40.8</span></span>
+<span id="cb68-17"><a href=""></a> <span class="dv">9</span> Afghanistan  <span class="dv">1992</span>        <span class="fl">41.7</span></span>
+<span id="cb68-18"><a href=""></a><span class="dv">10</span> Afghanistan  <span class="dv">1997</span>        <span class="fl">41.8</span></span>
+<span id="cb68-19"><a href=""></a><span class="co"># ℹ 386 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section>
@@ -1193,61 +1432,61 @@ A2 20 22 24</code></pre>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a>filtered_by_asia <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, continent <span class="sc">==</span> <span class="st">"Asia"</span>)</span>
-<span id="cb61-2"><a href=""></a>grouped_by_country <span class="ot">&lt;-</span> <span class="fu">group_by</span>(filtered_by_asia, country)</span>
-<span id="cb61-3"><a href=""></a>summarised_by_country <span class="ot">&lt;-</span> <span class="fu">summarise</span>(grouped_by_country, <span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span>
-<span id="cb61-4"><a href=""></a><span class="fu">arrange</span>(summarised_by_country, <span class="fu">desc</span>(avg_lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a>filtered_by_asia <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, continent <span class="sc">==</span> <span class="st">"Asia"</span>)</span>
+<span id="cb69-2"><a href=""></a>grouped_by_country <span class="ot">&lt;-</span> <span class="fu">group_by</span>(filtered_by_asia, country)</span>
+<span id="cb69-3"><a href=""></a>summarised_by_country <span class="ot">&lt;-</span> <span class="fu">summarise</span>(grouped_by_country, <span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span>
+<span id="cb69-4"><a href=""></a><span class="fu">arrange</span>(summarised_by_country, <span class="fu">desc</span>(avg_lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href=""></a>filtered_by_asia <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, continent <span class="sc">==</span> <span class="st">"Asia"</span>)</span>
-<span id="cb62-2"><a href=""></a>grouped_by_country <span class="ot">&lt;-</span> <span class="fu">group_by</span>(filtered_by_asia, country)</span>
-<span id="cb62-3"><a href=""></a>summarised_by_country <span class="ot">&lt;-</span> <span class="fu">summarise</span>(grouped_by_country, <span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span>
-<span id="cb62-4"><a href=""></a><span class="fu">arrange</span>(summarised_by_country, <span class="fu">desc</span>(avg_lifeExp))</span>
-<span id="cb62-5"><a href=""></a><span class="co"># A tibble: 33 × 2</span></span>
-<span id="cb62-6"><a href=""></a>   country          avg_lifeExp</span>
-<span id="cb62-7"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>                  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb62-8"><a href=""></a> <span class="dv">1</span> Japan                   <span class="fl">74.8</span></span>
-<span id="cb62-9"><a href=""></a> <span class="dv">2</span> Israel                  <span class="fl">73.6</span></span>
-<span id="cb62-10"><a href=""></a> <span class="dv">3</span> Hong Kong, China        <span class="fl">73.5</span></span>
-<span id="cb62-11"><a href=""></a> <span class="dv">4</span> Singapore               <span class="fl">71.2</span></span>
-<span id="cb62-12"><a href=""></a> <span class="dv">5</span> Taiwan                  <span class="fl">70.3</span></span>
-<span id="cb62-13"><a href=""></a> <span class="dv">6</span> Kuwait                  <span class="fl">68.9</span></span>
-<span id="cb62-14"><a href=""></a> <span class="dv">7</span> Sri Lanka               <span class="fl">66.5</span></span>
-<span id="cb62-15"><a href=""></a> <span class="dv">8</span> Lebanon                 <span class="fl">65.9</span></span>
-<span id="cb62-16"><a href=""></a> <span class="dv">9</span> Bahrain                 <span class="fl">65.6</span></span>
-<span id="cb62-17"><a href=""></a><span class="dv">10</span> Korea, Rep.             <span class="fl">65.0</span></span>
-<span id="cb62-18"><a href=""></a><span class="co"># ℹ 23 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a>filtered_by_asia <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, continent <span class="sc">==</span> <span class="st">"Asia"</span>)</span>
+<span id="cb70-2"><a href=""></a>grouped_by_country <span class="ot">&lt;-</span> <span class="fu">group_by</span>(filtered_by_asia, country)</span>
+<span id="cb70-3"><a href=""></a>summarised_by_country <span class="ot">&lt;-</span> <span class="fu">summarise</span>(grouped_by_country, <span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span>
+<span id="cb70-4"><a href=""></a><span class="fu">arrange</span>(summarised_by_country, <span class="fu">desc</span>(avg_lifeExp))</span>
+<span id="cb70-5"><a href=""></a><span class="co"># A tibble: 33 × 2</span></span>
+<span id="cb70-6"><a href=""></a>   country          avg_lifeExp</span>
+<span id="cb70-7"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>                  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb70-8"><a href=""></a> <span class="dv">1</span> Japan                   <span class="fl">74.8</span></span>
+<span id="cb70-9"><a href=""></a> <span class="dv">2</span> Israel                  <span class="fl">73.6</span></span>
+<span id="cb70-10"><a href=""></a> <span class="dv">3</span> Hong Kong, China        <span class="fl">73.5</span></span>
+<span id="cb70-11"><a href=""></a> <span class="dv">4</span> Singapore               <span class="fl">71.2</span></span>
+<span id="cb70-12"><a href=""></a> <span class="dv">5</span> Taiwan                  <span class="fl">70.3</span></span>
+<span id="cb70-13"><a href=""></a> <span class="dv">6</span> Kuwait                  <span class="fl">68.9</span></span>
+<span id="cb70-14"><a href=""></a> <span class="dv">7</span> Sri Lanka               <span class="fl">66.5</span></span>
+<span id="cb70-15"><a href=""></a> <span class="dv">8</span> Lebanon                 <span class="fl">65.9</span></span>
+<span id="cb70-16"><a href=""></a> <span class="dv">9</span> Bahrain                 <span class="fl">65.6</span></span>
+<span id="cb70-17"><a href=""></a><span class="dv">10</span> Korea, Rep.             <span class="fl">65.0</span></span>
+<span id="cb70-18"><a href=""></a><span class="co"># ℹ 23 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb63-2"><a href=""></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Asia"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb63-3"><a href=""></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
-<span id="cb63-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp)) <span class="sc">%&gt;%</span> </span>
-<span id="cb63-5"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href=""></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb71-2"><a href=""></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Asia"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-3"><a href=""></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp)) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-5"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb64-2"><a href=""></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Asia"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb64-3"><a href=""></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
-<span id="cb64-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp)) <span class="sc">%&gt;%</span> </span>
-<span id="cb64-5"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_lifeExp))</span>
-<span id="cb64-6"><a href=""></a><span class="co"># A tibble: 33 × 2</span></span>
-<span id="cb64-7"><a href=""></a>   country          avg_lifeExp</span>
-<span id="cb64-8"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>                  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb64-9"><a href=""></a> <span class="dv">1</span> Japan                   <span class="fl">74.8</span></span>
-<span id="cb64-10"><a href=""></a> <span class="dv">2</span> Israel                  <span class="fl">73.6</span></span>
-<span id="cb64-11"><a href=""></a> <span class="dv">3</span> Hong Kong, China        <span class="fl">73.5</span></span>
-<span id="cb64-12"><a href=""></a> <span class="dv">4</span> Singapore               <span class="fl">71.2</span></span>
-<span id="cb64-13"><a href=""></a> <span class="dv">5</span> Taiwan                  <span class="fl">70.3</span></span>
-<span id="cb64-14"><a href=""></a> <span class="dv">6</span> Kuwait                  <span class="fl">68.9</span></span>
-<span id="cb64-15"><a href=""></a> <span class="dv">7</span> Sri Lanka               <span class="fl">66.5</span></span>
-<span id="cb64-16"><a href=""></a> <span class="dv">8</span> Lebanon                 <span class="fl">65.9</span></span>
-<span id="cb64-17"><a href=""></a> <span class="dv">9</span> Bahrain                 <span class="fl">65.6</span></span>
-<span id="cb64-18"><a href=""></a><span class="dv">10</span> Korea, Rep.             <span class="fl">65.0</span></span>
-<span id="cb64-19"><a href=""></a><span class="co"># ℹ 23 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href=""></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb72-2"><a href=""></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Asia"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb72-3"><a href=""></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb72-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp)) <span class="sc">%&gt;%</span> </span>
+<span id="cb72-5"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_lifeExp))</span>
+<span id="cb72-6"><a href=""></a><span class="co"># A tibble: 33 × 2</span></span>
+<span id="cb72-7"><a href=""></a>   country          avg_lifeExp</span>
+<span id="cb72-8"><a href=""></a>   <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>                  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb72-9"><a href=""></a> <span class="dv">1</span> Japan                   <span class="fl">74.8</span></span>
+<span id="cb72-10"><a href=""></a> <span class="dv">2</span> Israel                  <span class="fl">73.6</span></span>
+<span id="cb72-11"><a href=""></a> <span class="dv">3</span> Hong Kong, China        <span class="fl">73.5</span></span>
+<span id="cb72-12"><a href=""></a> <span class="dv">4</span> Singapore               <span class="fl">71.2</span></span>
+<span id="cb72-13"><a href=""></a> <span class="dv">5</span> Taiwan                  <span class="fl">70.3</span></span>
+<span id="cb72-14"><a href=""></a> <span class="dv">6</span> Kuwait                  <span class="fl">68.9</span></span>
+<span id="cb72-15"><a href=""></a> <span class="dv">7</span> Sri Lanka               <span class="fl">66.5</span></span>
+<span id="cb72-16"><a href=""></a> <span class="dv">8</span> Lebanon                 <span class="fl">65.9</span></span>
+<span id="cb72-17"><a href=""></a> <span class="dv">9</span> Bahrain                 <span class="fl">65.6</span></span>
+<span id="cb72-18"><a href=""></a><span class="dv">10</span> Korea, Rep.             <span class="fl">65.0</span></span>
+<span id="cb72-19"><a href=""></a><span class="co"># ℹ 23 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section></section>

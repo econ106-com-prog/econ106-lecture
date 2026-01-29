@@ -230,14 +230,80 @@ z <- array(1:24, c(2, 3, 4), dimnames=list(dim1, dim2, dim3))
 z
 ```
 
-## Dataframe
+
+
+## Data frame
+
+- a more general than a matrix in that different columns can contain
+different modes of data
+
+- similar to the datasets you’d typically see in SAS, SPSS, and Stata
+
+- data frames are the most common data structure you’ll deal with in R
+
+![Source: Wickham 2025. R for Data Science 2nd ed](https://r4ds.hadley.nz/images/tidy-1.png)
+
+
+## Data frame
+
+- data frames are the most common data structure you will be working in R
+- you can create a data frame using `data.frame()` function
+
+```{r}
+#| echo: fenced
+## creating column vector
+patientID <- c(1, 2, 3, 4)
+age <- c(25, 34, 28, 52)
+diabetes <- c("Type1", "Type2", "Type1", "Type1")
+status <- c("Poor", "Improved", "Excellent", "Poor")
+
+## using data.frame to create patient_data frame
+patientdata <- data.frame(patientID, age, diabetes, status)
+
+## print patient data frame
+patientdata
+```
+
 
 
 ## Tibble
 
+- a modern reimagining of `data.frame`
+- tibbles are data frames
+- create a tibble from individual vectors using `tibble()` function
 
-## Data structures
+```{r}
+#| echo: fenced
 
+tibble(
+  x = 1:5, 
+  y = 1, 
+  z = x ^ 2 + y
+)
+```
+
+
+## Tibble
+
+- we can coerce a data frame to a tibble using `as_tibble` function
+
+::: {.columns}
+::: {.column}
+```{r}
+#| echo: fenced
+iris
+
+```
+:::
+::: {.column}
+
+```{r}
+#| echo: fenced
+as_tibble(iris)
+
+```
+:::
+:::
 
 
 # Reading data into R
