@@ -28,18 +28,19 @@ setwd(here::here("module-2-data-management/"))
 
 ## libraries
 library(tidyverse)
+library(readxl)
 
 ```
 
 ## Overview
 
 ::: incremental
-- Dataframe and tibble
-- Introduction to Tidyverse
-- Basic data wrangling with `dplyr`
-- Data reshaping
-- Handling missing data
-- Case studies
+-   Dataframe and tibble
+-   Introduction to Tidyverse
+-   Basic data wrangling with `dplyr`
+-   Data reshaping
+-   Handling missing data
+-   Case studies
 :::
 
 # 
@@ -50,9 +51,7 @@ library(tidyverse)
 Illustration adopted from [Allison Horst](https://twitter.com/allison_horst)
 :::
 
-
 # Introduction to Tidyverse
-
 
 ## Tidyverse package {.center-text}
 
@@ -106,22 +105,19 @@ Illustration adopted from [Allison Horst](https://github.com/allisonhorst)
 Illustration adopted from [Allison Horst](https://github.com/allisonhorst)
 :::
 
-
 # Data structures
-
 
 ## Data structure
 
-- R has a variety of holding data
-- e.g., scalars, vectors, matrices, arrays, dataframes
+-   R has a variety of holding data
+-   e.g., scalars, vectors, matrices, arrays, dataframes
 
 ![R Data Structure. Source: Kabacoff (2011) R in Action](img/data-structure.png){fig-align="center"}
 
-
 ## Vectors
 
-- vectors are one dimnensional arrays that can hold numeric, character, or logical data
-- combine function `c()` is used to form a vector
+-   vectors are one dimnensional arrays that can hold numeric, character, or logical data
+-   combine function `c()` is used to form a vector
 
 ```{r}
 #| echo: fenced
@@ -131,19 +127,18 @@ b <- c("one", "two", "three")
 c <- c(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE)
 ```
 
-:::{.incremental}
-- `a` is a numeric vector
-- `b` is a character vector
-- `c` is a logical vector
+::: incremental
+-   `a` is a numeric vector
+-   `b` is a character vector
+-   `c` is a logical vector
 :::
 
-
 ## Vectors
 
-- vectors are one dimnensional arrays that can hold numeric, character, or logical data
-- combine function `c()` is used to form a vector
-- scalars are one-element vectors. They’re used to hold constants.
-    - e.g., `f <- 3`, g `<- "US"` and `h <- TRUE`
+-   vectors are one dimnensional arrays that can hold numeric, character, or logical data
+-   combine function `c()` is used to form a vector
+-   scalars are one-element vectors. They’re used to hold constants.
+    -   e.g., `f <- 3`, g `<- "US"` and `h <- TRUE`
 
 ```{r}
 #| echo: fenced
@@ -152,22 +147,20 @@ a <- c(1, 2, 5, 3, 6, -2, 4)
 b <- c("one", "two", "three")
 c <- c(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE)
 ```
-
-
 
 ## Vectors
 
 ::: {.callout-note style="font-size:1.5em;"}
 ## Remember
+
 Data in a vector must only be one type or mode (numeric, character, or logical). You can’t mix modes in the same vector. If you try to mix data types (modes) in a vector, R automatically converts the elements of the vector to a single, common type.
 :::
 
-- logicals and numerics, logicals → numeric (`TRUE = 1`,` FALSE = 0`)
+-   logicals and numerics, logicals → numeric (`TRUE = 1`,`FALSE = 0`)
 
-- integers and numerics, integers → numeric
+-   integers and numerics, integers → numeric
 
-- anything with characters → character strings
-
+-   anything with characters → character strings
 
 ```{r}
 #| echo: fenced
@@ -179,11 +172,10 @@ typeof(my_vector)
 
 ```
 
-
 ## Matrices
 
-- two-dimensional array where each element has the same data types
-- matrices are created with the `matrix` function
+-   two-dimensional array where each element has the same data types
+-   matrices are created with the `matrix` function
 
 ```{r}
 #| echo: fenced
@@ -192,11 +184,10 @@ y <- matrix(1:20, nrow = 5, ncol = 4)
 y
 ```
 
-
 ## Matrices
 
-- two-dimensional array where each element has the same data types
-- matrices are created with the `matrix` function
+-   two-dimensional array where each element has the same data types
+-   matrices are created with the `matrix` function
 
 ```{r}
 #| echo: fenced
@@ -212,23 +203,20 @@ mymatrix <- matrix(cells, nrow=2, ncol=2, byrow=TRUE, dimnames = list(rnames, cn
 mymatrix
 ```
 
-
 ## Data frame
 
-- a more general than a matrix in that different columns can contain
-different modes of data
+-   a more general than a matrix in that different columns can contain different modes of data
 
-- similar to the datasets you’d typically see in SAS, SPSS, and Stata
+-   similar to the datasets you’d typically see in SAS, SPSS, and Stata
 
-- data frames are the most common data structure you’ll deal with in R
+-   data frames are the most common data structure you’ll deal with in R
 
 ![Source: Wickham 2025. R for Data Science 2nd ed](https://r4ds.hadley.nz/images/tidy-1.png)
 
-
 ## Data frame
 
-- data frames are the most common data structure you will be working in R
-- you can create a data frame using `data.frame()` function
+-   data frames are the most common data structure you will be working in R
+-   you can create a data frame using `data.frame()` function
 
 ```{r}
 #| echo: fenced
@@ -245,13 +233,11 @@ patientdata <- data.frame(patientID, age, diabetes, status)
 patientdata
 ```
 
-
-
 ## Tibble
 
-- a modern reimagining of `data.frame`
-- tibbles are data frames
-- create a tibble from individual vectors using `tibble()` function
+-   a modern reimagining of `data.frame`
+-   tibbles are data frames
+-   create a tibble from individual vectors using `tibble()` function
 
 ```{r}
 #| echo: fenced
@@ -263,29 +249,27 @@ tibble(
 )
 ```
 
-
 ## Tibble
 
-- we can coerce a data frame to a tibble using `as_tibble` function
+-   we can coerce a data frame to a tibble using `as_tibble` function
 
-::: {.columns}
-::: {.column}
+::::: columns
+::: column
 ```{r}
 #| echo: fenced
 iris
 
 ```
 :::
-::: {.column}
 
+::: column
 ```{r}
 #| echo: fenced
 as_tibble(iris)
 
 ```
 :::
-:::
-
+:::::
 
 # Reading data into R
 
@@ -1051,6 +1035,96 @@ data %>%
 # Let's practice
 
 # Basic data transformation
+
+## Reshaping data
+
+- the process of changing the structure or layout of a dataset without altering its actual content.
+
+- it helps organize data into formats that are easier to analyze, visualize, or model.
+
+- same information, different arrangement.
+
+<br>
+
+::: {.columns}
+::: {.column}
+**wide formt → long format**
+![](img/pivot_longer.png)
+:::
+::: {.column}
+**long format → wide format**
+![](img/pivot_wider.png)
+:::
+:::
+<!-- end columns -->
+
+
+## Reshaping data
+
+- `tidyr` package provides powerful functions for reshaping:
+  - `pivot_longer()` → converts wide data into long format. 
+  - `pivot_wider()` → converts long data into wide format.
+
+<br>
+
+::: {.columns}
+::: {.column}
+**wide formt → long format**
+![](img/pivot_longer.png)
+:::
+::: {.column}
+**long format → wide format**
+![](img/pivot_wider.png)
+:::
+:::
+<!-- end columns -->
+
+
+
+## Wide data format
+
+- each subject or observation occupies a single row, with multiple variables spread across columns.
+
+- one row per entity, many columns for repeated measures.
+
+- easier for human readability and simple summaries. Often used in spreadsheets.
+
+```{r}
+#| echo: fenced
+read_excel("data/urbanpop.xlsx")
+```
+
+
+## Long data format
+
+- each measurement or observation is stored in its own row, with variables indicating who, what, and when.
+
+- multiple rows per entity, fewer columns.
+
+- referred for statistical modeling, visualization (e.g., `ggplot2` in R), and tidy data principles.
+
+```{r}
+#| echo: fenced
+read_excel("data/urbanpop.xlsx") |> 
+  pivot_longer(cols = `1960`:`1966`, names_to = "year", values_to = "urban_pop")
+```
+
+
+## Wide → Long data format
+
+- `pivot_longer()` function "lengthens" data by collapsing several coumns into two
+- original column names → names
+- data values → value
+
+```{r}
+#| echo: fenced
+#| eval: false
+
+pivot_longer(data, cols, names_to = "name", values_to = "value")
+```
+
+![](img/pivot_longer.png)
+
 
 # 
 
