@@ -12,7 +12,7 @@ format:
     chalkboard: true
     slide-number: true
     footer: "Econ 106: Computer Programming for Economics"
-engine: knitr
+engine: knitr   
 from: markdown+emoji
 editor: visual
 ---
@@ -21,7 +21,7 @@ editor: visual
 #| echo: false
 #| include: false
 
-knitr::opts_chunk$set(comment = "", collapse = TRUE)
+knitr::opts_chunk$set(comment = "", collapse = TRUE, echo = TRUE)
 
 ## working directory
 setwd(here::here("module-2-data-management/"))
@@ -285,7 +285,7 @@ as_tibble(iris)
 
 #### SPSS, Stata & SAS using [haven package](https://haven.tidyverse.org/)
 
-::::: columns
+::: columns
 ::: column
 ```{r}
 #| echo: true
@@ -335,7 +335,7 @@ read_sas("path/data.sas7bdat")
 knitr::include_graphics("img/haven.png")
 ```
 :::
-:::::
+:::
 
 ## Importing data into R
 
@@ -343,8 +343,8 @@ knitr::include_graphics("img/haven.png")
 
 <br>
 
-::::: columns
-::: {.column width="60%"}
+::: columns
+::: {.column width="70%"}
 ```{r}
 #| echo: true
 #| eval: false
@@ -361,7 +361,7 @@ readxl::read_excel(dataset_xl_sample)
 ```
 :::
 
-::: {.column width="40%"}
+::: {.column width="30%"}
 ```{r}
 #| echo: false
 #| fig-align: center
@@ -370,7 +370,7 @@ readxl::read_excel(dataset_xl_sample)
 knitr::include_graphics("img/readxl.png")
 ```
 :::
-:::::
+:::
 
 ## Importing data into R
 
@@ -470,33 +470,29 @@ see `dplyr` [cheatsheets](https://github.com/rstudio/cheatsheets/blob/cd775237fd
 
 ## `select()`
 
-::::: columns
+::: columns
 ::: {.column width="50%"}
-```{r echo=FALSE}
+```{r}
+#| echo: false
 data <- gapminder::gapminder
 ```
 
-```{r}
-#| eval: false
-#| echo: true
-
+```{{r}}
 data
 ```
-
 <br>
 
 ```{r}
-#| echo: true
 #| class-output: "remark-code"
+#| echo: true
 
 data
 ```
+
 :::
 
 ::: {.column width="50%"}
-```{r}
-#| eval: false
-#| echo: true
+```{{r}}
 select(data, continent, country, pop)
 ```
 
@@ -505,11 +501,10 @@ select(data, continent, country, pop)
 ```{r}
 #| echo: true
 #| class-output: "remark-code"
-
 select(data, continent, country, pop)
 ```
 :::
-:::::
+:::
 
 ## `select()`
 
@@ -521,10 +516,7 @@ We can also **remove** variables with a **`-`** (minus)
 data <- gapminder::gapminder
 ```
 
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 data
 ```
 
@@ -539,13 +531,9 @@ data
 :::
 
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 select(data, -year, -pop)
 ```
-
 <br>
 
 ```{r}
@@ -575,9 +563,7 @@ These *selection helpers* match variables according to a given pattern.
 
 ::::: columns
 ::: {.column width="50%"}
-```{r}
-#| echo: true
-#| eval: false
+```{{r}}
 data
 ```
 
@@ -592,10 +578,7 @@ data
 :::
 
 ::: {.column width="50%"}
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 filter(data, country == "Philippines")
 ```
 
@@ -624,10 +607,7 @@ Let's calculate the `gdp`
 
 ::::: columns
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 data
 ```
 
@@ -642,10 +622,7 @@ data
 :::
 
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 mutate(data, GDP = gdpPercap * pop)
 ```
 
@@ -668,10 +645,7 @@ Changes the variable name while keeping all else intact.
 
 ::::: columns
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 data
 ```
 
@@ -686,10 +660,7 @@ data
 :::
 
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 rename(data, population = pop)
 ```
 
@@ -698,7 +669,6 @@ rename(data, population = pop)
 ```{r}
 #| echo: true
 #| class-output: "remark-code"
-
 rename(data, population = pop)
 ```
 :::
@@ -712,10 +682,7 @@ You can order data by variable to show the highest or lowest values first.
 ::: column
 consider `lifeExp` default is lowest first
 
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 data
 ```
 
@@ -724,7 +691,6 @@ data
 ```{r}
 #| echo: true
 #| class-output: "remark-code"
-
 data
 ```
 :::
@@ -732,10 +698,7 @@ data
 ::: column
 `desc()` sort `lifeExp` from highest to lowest
 
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 arrange(data, desc(lifeExp))
 ```
 
@@ -768,10 +731,7 @@ Suppose we want to know the average population by continent.
 
 ::::: columns
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 data
 ```
 
@@ -786,10 +746,7 @@ data
 :::
 
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 grouped_by_continent <- group_by(data, continent)
 summarise(grouped_by_continent, avg_pop = mean(pop))
 ```
@@ -812,10 +769,7 @@ Suppose we want to know the average population by continent.
 
 ::::: columns
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 data
 ```
 
@@ -830,10 +784,7 @@ data
 :::
 
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 grouped_by_continent <- group_by(data, continent)
 summarised_data <- summarise(grouped_by_continent, avg_pop = mean(pop))
 arrange(summarised_data, desc(avg_pop))
@@ -880,10 +831,7 @@ The **`%>%`** or **`|>`** helps your write code in a way that is easier to read 
 
 ::::: columns
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 grouped_by_continent <- group_by(data, continent)
 summarised_data <- summarise(grouped_by_continent, avg_pop = mean(pop))
 arrange(summarised_data, desc(avg_pop))
@@ -902,10 +850,7 @@ arrange(summarised_data, desc(avg_pop))
 :::
 
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 data %>% 
   group_by(continent) %>% 
   summarise(avg_pop = mean(pop)) %>% 
@@ -932,10 +877,7 @@ What is the average life expectancy of Asian countries per year?
 
 ::::: columns
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 filtered_by_asia <- filter(data, continent == "Asia")
 grouped_by_country_year <- group_by(filtered_by_asia, country, year)
 summarise(grouped_by_country_year, avg_lifeExp = mean(lifeExp))
@@ -954,10 +896,7 @@ summarise(grouped_by_country_year, avg_lifeExp = mean(lifeExp))
 :::
 
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 data %>% 
   filter(continent == "Asia") %>% 
   group_by(country, year) %>% 
@@ -980,12 +919,11 @@ data %>%
 
 ## The `%>%` operator
 
+<br>
+
 ::::: columns
 ::: column
-```{r}
-#| echo: true
-#| eval: false
-
+```{{r}}
 filtered_by_asia <- filter(data, continent == "Asia")
 grouped_by_country <- group_by(filtered_by_asia, country)
 summarised_by_country <- summarise(grouped_by_country, avg_lifeExp = mean(lifeExp))
@@ -1006,10 +944,8 @@ arrange(summarised_by_country, desc(avg_lifeExp))
 :::
 
 ::: column
-```{r}
-#| echo: true
-#| eval: false
 
+```{{r}}
 data %>% 
   filter(continent == "Asia") %>% 
   group_by(country) %>% 
@@ -1022,7 +958,6 @@ data %>%
 ```{r}
 #| echo: true
 #| class-output: "remark-code"
-
 data %>% 
   filter(continent == "Asia") %>% 
   group_by(country) %>% 
