@@ -39,7 +39,6 @@ library(readxl)
 -   Introduction to Tidyverse
 -   Basic data wrangling with `dplyr`
 -   Data reshaping
--   Handling missing data
 -   Case studies
 :::
 
