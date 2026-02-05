@@ -1093,8 +1093,49 @@ read_excel("data/urbanpop.xlsx") |>
 
 - used when a dataset is "too long" - an observation is scattered across multiple rows
 
+```{r}
+#| echo: fenced
+#| eval: false
+pivot_wider(data, names_from = "name", values_to = "cases")
+```
+
 ![](img/pivot_wider.png)
 
+
+## Long → Wide data format
+
+- inverse of `pivot_longer()`, widening data by expanding two columns into many
+
+- used when a dataset is "too long" - an observation is scattered across multiple rows
+
+```{r}
+#| echo: false
+urban_pop_long <- 
+  read_excel("data/urbanpop.xlsx") |> 
+  pivot_longer(cols = `1960`:`1966`, names_to = "year", values_to = "urban_pop") 
+```
+
+::: {.columns}
+::: {.column}
+
+```{r}
+#| echo: true
+#| class-output: "remark-code"
+
+urban_pop_long
+```
+:::
+::: {.column}
+
+```{r}
+#| echo: true
+#| class-output: "remark-code"
+urban_pop_long |> 
+  pivot_wider(names_from = year, values_from = urban_pop)
+```
+:::
+:::
+<!-- end columns -->
 
 # 
 
