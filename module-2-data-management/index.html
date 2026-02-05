@@ -1562,7 +1562,63 @@ R2 24 68</code></pre>
 <span id="cb75-5"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
-<img data-src="img/pivot_longer.png" class="r-stretch"></section></section>
+<img data-src="img/pivot_longer.png" class="r-stretch"></section>
+<section id="wide-long-data-format-1" class="slide level2">
+<h2>Wide → Long data format</h2>
+<ul>
+<li><code>pivot_longer()</code> function “lengthens” data by collapsing several coumns into two</li>
+<li>original column names → names</li>
+<li>data values → value</li>
+</ul>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href=""></a><span class="fu">read_excel</span>(<span class="st">"data/urbanpop.xlsx"</span>)</span>
+<span id="cb76-2"><a href=""></a><span class="co"># A tibble: 209 × 8</span></span>
+<span id="cb76-3"><a href=""></a>   country               <span class="st">`</span><span class="at">1960</span><span class="st">`</span>    <span class="st">`</span><span class="at">1961</span><span class="st">`</span>    <span class="st">`</span><span class="at">1962</span><span class="st">`</span>  <span class="st">`</span><span class="at">1963</span><span class="st">`</span> <span class="st">`</span><span class="at">1964</span><span class="st">`</span> <span class="st">`</span><span class="at">1965</span><span class="st">`</span> <span class="st">`</span><span class="at">1966</span><span class="st">`</span></span>
+<span id="cb76-4"><a href=""></a>   <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>                  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb76-5"><a href=""></a> <span class="dv">1</span> Afghanistan           <span class="dv">769308</span>   <span class="fl">814923.</span>   <span class="fl">858522.</span>  <span class="fl">9.04e5</span> <span class="fl">9.51e5</span> <span class="fl">1.00e6</span> <span class="fl">1.06e6</span></span>
+<span id="cb76-6"><a href=""></a> <span class="dv">2</span> Albania               <span class="dv">494443</span>   <span class="fl">511803.</span>   <span class="fl">529439.</span>  <span class="fl">5.47e5</span> <span class="fl">5.66e5</span> <span class="fl">5.84e5</span> <span class="fl">6.03e5</span></span>
+<span id="cb76-7"><a href=""></a> <span class="dv">3</span> Algeria              <span class="dv">3293999</span>  <span class="fl">3515148.</span>  <span class="fl">3739963.</span>  <span class="fl">3.97e6</span> <span class="fl">4.22e6</span> <span class="fl">4.49e6</span> <span class="fl">4.65e6</span></span>
+<span id="cb76-8"><a href=""></a> <span class="dv">4</span> American Samoa            <span class="cn">NA</span>    <span class="fl">13660.</span>    <span class="fl">14166.</span>  <span class="fl">1.48e4</span> <span class="fl">1.54e4</span> <span class="fl">1.60e4</span> <span class="fl">1.67e4</span></span>
+<span id="cb76-9"><a href=""></a> <span class="dv">5</span> Andorra                   <span class="cn">NA</span>     <span class="fl">8724.</span>     <span class="fl">9700.</span>  <span class="fl">1.07e4</span> <span class="fl">1.19e4</span> <span class="fl">1.31e4</span> <span class="fl">1.42e4</span></span>
+<span id="cb76-10"><a href=""></a> <span class="dv">6</span> Angola                <span class="dv">521205</span>   <span class="fl">548265.</span>   <span class="fl">579695.</span>  <span class="fl">6.12e5</span> <span class="fl">6.45e5</span> <span class="fl">6.79e5</span> <span class="fl">7.18e5</span></span>
+<span id="cb76-11"><a href=""></a> <span class="dv">7</span> Antigua and Barbuda    <span class="dv">21699</span>    <span class="fl">21635.</span>    <span class="fl">21664.</span>  <span class="fl">2.17e4</span> <span class="fl">2.18e4</span> <span class="fl">2.19e4</span> <span class="fl">2.20e4</span></span>
+<span id="cb76-12"><a href=""></a> <span class="dv">8</span> Argentina           <span class="dv">15224096</span> <span class="fl">15545223.</span> <span class="fl">15912120.</span>  <span class="fl">1.63e7</span> <span class="fl">1.67e7</span> <span class="fl">1.70e7</span> <span class="fl">1.74e7</span></span>
+<span id="cb76-13"><a href=""></a> <span class="dv">9</span> Armenia               <span class="dv">957974</span>  <span class="fl">1008597.</span>  <span class="fl">1061426.</span>  <span class="fl">1.12e6</span> <span class="fl">1.17e6</span> <span class="fl">1.23e6</span> <span class="fl">1.28e6</span></span>
+<span id="cb76-14"><a href=""></a><span class="dv">10</span> Aruba                  <span class="dv">24996</span>    <span class="fl">28140.</span>    <span class="fl">28533.</span>  <span class="fl">2.88e4</span> <span class="fl">2.89e4</span> <span class="fl">2.91e4</span> <span class="fl">2.93e4</span></span>
+<span id="cb76-15"><a href=""></a><span class="co"># ℹ 199 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href=""></a><span class="fu">read_excel</span>(<span class="st">"data/urbanpop.xlsx"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb77-2"><a href=""></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1960</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">1966</span><span class="st">`</span>, <span class="at">names_to =</span> <span class="st">"year"</span>, <span class="at">values_to =</span> <span class="st">"urban_pop"</span>)</span>
+<span id="cb77-3"><a href=""></a><span class="co"># A tibble: 1,463 × 3</span></span>
+<span id="cb77-4"><a href=""></a>   country     year  urban_pop</span>
+<span id="cb77-5"><a href=""></a>   <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>       <span class="er">&lt;</span>chr<span class="sc">&gt;</span>     <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb77-6"><a href=""></a> <span class="dv">1</span> Afghanistan <span class="dv">1960</span>    <span class="dv">769308</span> </span>
+<span id="cb77-7"><a href=""></a> <span class="dv">2</span> Afghanistan <span class="dv">1961</span>    <span class="fl">814923.</span></span>
+<span id="cb77-8"><a href=""></a> <span class="dv">3</span> Afghanistan <span class="dv">1962</span>    <span class="fl">858522.</span></span>
+<span id="cb77-9"><a href=""></a> <span class="dv">4</span> Afghanistan <span class="dv">1963</span>    <span class="fl">903914.</span></span>
+<span id="cb77-10"><a href=""></a> <span class="dv">5</span> Afghanistan <span class="dv">1964</span>    <span class="fl">951226.</span></span>
+<span id="cb77-11"><a href=""></a> <span class="dv">6</span> Afghanistan <span class="dv">1965</span>   <span class="fl">1000582.</span></span>
+<span id="cb77-12"><a href=""></a> <span class="dv">7</span> Afghanistan <span class="dv">1966</span>   <span class="fl">1058743.</span></span>
+<span id="cb77-13"><a href=""></a> <span class="dv">8</span> Albania     <span class="dv">1960</span>    <span class="dv">494443</span> </span>
+<span id="cb77-14"><a href=""></a> <span class="dv">9</span> Albania     <span class="dv">1961</span>    <span class="fl">511803.</span></span>
+<span id="cb77-15"><a href=""></a><span class="dv">10</span> Albania     <span class="dv">1962</span>    <span class="fl">529439.</span></span>
+<span id="cb77-16"><a href=""></a><span class="co"># ℹ 1,453 more rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+<!-- end columns -->
+</section>
+<section id="long-wide-data-format" class="slide level2">
+<h2>Long → Wide data format</h2>
+<ul>
+<li><p>inverse of <code>pivot_longer()</code>, widening data by expanding two columns into many</p></li>
+<li><p>used when a dataset is “too long” - an observation is scattered across multiple rows</p></li>
+</ul>
+
+<img data-src="img/pivot_wider.png" class="r-stretch"></section></section>
 <section id="section-7" class="title-slide slide level1 center">
 <h1></h1>
 <div class="quarto-figure quarto-figure-center">

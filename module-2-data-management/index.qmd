@@ -1061,6 +1061,41 @@ pivot_longer(data, cols, names_to = "name", values_to = "value")
 ![](img/pivot_longer.png)
 
 
+## Wide → Long data format
+
+- `pivot_longer()` function "lengthens" data by collapsing several coumns into two
+- original column names → names
+- data values → value
+
+::: {.columns}
+::: {.column}
+```{r}
+#| echo: true
+#| class-output: "remark-code"
+read_excel("data/urbanpop.xlsx")
+```
+:::
+::: {.column}
+```{r}
+#| echo: true
+#| class-output: "remark-code"
+read_excel("data/urbanpop.xlsx") |> 
+  pivot_longer(cols = `1960`:`1966`, names_to = "year", values_to = "urban_pop")
+```
+:::
+:::
+<!-- end columns -->
+
+
+## Long → Wide data format
+
+- inverse of `pivot_longer()`, widening data by expanding two columns into many
+
+- used when a dataset is "too long" - an observation is scattered across multiple rows
+
+![](img/pivot_wider.png)
+
+
 # 
 
 ![](img/econ106-logo.png){fig-align="center" height="40%" width="40%"}
