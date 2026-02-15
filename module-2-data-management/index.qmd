@@ -12,6 +12,11 @@ format:
     chalkboard: true
     slide-number: true
     footer: "Econ 106: Computer Programming for Economics"
+    quiz:
+      defaultCorrect: "Correct!"
+      defaultIncorrect: "Incorrect!"
+revealjs-plugins:
+  - quiz
 engine: knitr   
 from: markdown+emoji
 editor: visual
@@ -270,6 +275,45 @@ as_tibble(iris)
 :::
 :::::
 
+
+# check-up quiz
+
+## Which of the following is NOT a basic data structure in R? {.quiz-question}
+
+- Vector
+- Matrix
+- Array
+- [Function]{.correct data-explanation="Correct! R’s basic data structures include scalars, vectors, matrices, arrays, data frames, and lists. Functions are not considered data structures; they are tools for computation."}
+
+## What is the correct description of a vector in R? {.quiz-question}
+
+- A two‑dimensional array with elements of the same type
+- [A one‑dimensional array that can hold numeric, character, or logical data]{.correct data-explanation="Correct! Vectors are the simplest data structure in R. They are one‑dimensional and must contain elements of the same type (numeric, character, or logical)"}
+- A collection of variables of different modes stored in columns
+- A hierarchical structure for storing lists
+
+## What happens if you mix data types in a vector? {.quiz-question} 
+
+- R throws an error and stops execution
+- [R automatically converts all elements to a single common type]{.correct data-explanation="Correct! R enforces homogeneity in vectors. If you mix types, R coerces them into a common type (e.g., numbers + characters → character)."}
+- R stores each element in its original type
+- R creates a list instead of a vector
+
+## Which function is used to create a matrix in R? {.quiz-question} 
+
+- c()  
+- data.frame()  
+- [matrix()]{.correct data-explanation="Correct! The matrix() function creates two‑dimensional arrays where all elements are of the same type.Unlike matrices, which require all elements to be of the same type, data frames allow each column to store different types (numeric, character, logical). This makes them more flexible and widely used in R."}  
+- array()
+
+## How does a data frame differ from a matrix in R? {.quiz-question}
+
+- A data frame can only hold numeric data
+- [A data frame allows different columns to contain different modes of data]{.correct data-explanation="Correct! Unlike matrices, which require all elements to be of the same type, data frames allow each column to store different types (numeric, character, logical). This makes them more flexible and widely used in R."}
+- A data frame is limited to two dimensions
+- A data frame cannot be printed in tabular form
+
+
 # Reading data into R
 
 ## Importing data
@@ -284,7 +328,7 @@ as_tibble(iris)
 
 #### SPSS, Stata & SAS using [haven package](https://haven.tidyverse.org/)
 
-::: columns
+::::: columns
 ::: column
 ```{r}
 #| echo: true
@@ -334,7 +378,7 @@ read_sas("path/data.sas7bdat")
 knitr::include_graphics("img/haven.png")
 ```
 :::
-:::
+:::::
 
 ## Importing data into R
 
@@ -342,7 +386,7 @@ knitr::include_graphics("img/haven.png")
 
 <br>
 
-::: columns
+::::: columns
 ::: {.column width="70%"}
 ```{r}
 #| echo: true
@@ -369,7 +413,7 @@ readxl::read_excel(dataset_xl_sample)
 knitr::include_graphics("img/readxl.png")
 ```
 :::
-:::
+:::::
 
 ## Importing data into R
 
@@ -429,7 +473,41 @@ knitr::include_graphics("img/readr.png")
 :::
 :::::
 
-# Let's practice
+
+# Check-up quiz
+
+## Which R package is used to import SPSS, Stata, and SAS files? {.quiz-question} 
+- readr  
+- [haven]{.correct data-explanation="Correct! The haven package is designed to import data from SPSS (.sav), Stata (.dta), and SAS (.sas7bdat) files."}  
+- readxl  
+- tidyr
+
+## If you want to import Excel files into R, which function should you use? {.quiz-question}
+- read_csv()  
+- [read_excel()]{.correct data-explanation="Correct! The readxl package provides the read_excel() function to import .xls or .xlsx files."}  
+- read_sav()  
+- read_tsv()
+
+## Which function from the readr package is used to import comma‑separated values (CSV) files? {.quiz-question}
+- [read_csv()]{.correct data-explanation="Correct! The readr package includes read_csv() for CSV files, read_tsv() for tab‑separated files, and read_delim() for general delimited files."}  
+- read_delim()  
+- read_tsv()  
+- read_excel()
+
+## Which of the following statements about importing data into R is TRUE? {.quiz-question}
+- read_sav() is used for Excel files
+- [read_tsv() is used for tab‑separated files]{.correct data-explanation="Correct! The readr package provides read_tsv() specifically for tab‑separated files."}
+- read_excel() is part of the readr package
+- read_dta() is used for CSV files
+
+## Which package would you use if you need to import a dataset saved in Stata format (.dta)? {.quiz-question}
+- readxl  
+- readr  
+- [haven]{.correct data-explanation="Correct! The haven package supports importing Stata files using the read_dta() function."}  
+- tidyr
+
+
+
 
 # Basic data wrangling with `dplyr`
 
@@ -469,7 +547,7 @@ see `dplyr` [cheatsheets](https://github.com/rstudio/cheatsheets/blob/cd775237fd
 
 ## `select()`
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r}
 #| echo: false
@@ -479,6 +557,7 @@ data <- gapminder::gapminder
 ```{{r}}
 data
 ```
+
 <br>
 
 ```{r}
@@ -487,7 +566,6 @@ data
 
 data
 ```
-
 :::
 
 ::: {.column width="50%"}
@@ -503,7 +581,7 @@ select(data, continent, country, pop)
 select(data, continent, country, pop)
 ```
 :::
-:::
+:::::
 
 ## `select()`
 
@@ -530,9 +608,11 @@ data
 :::
 
 ::: column
+
 ```{{r}}
 select(data, -year, -pop)
 ```
+
 <br>
 
 ```{r}
@@ -943,7 +1023,6 @@ arrange(summarised_by_country, desc(avg_lifeExp))
 :::
 
 ::: column
-
 ```{{r}}
 data %>% 
   filter(continent == "Asia") %>% 
@@ -966,76 +1045,105 @@ data %>%
 :::
 :::::
 
-# Let's practice
+
+# Check-up quiz
+
+## Which dplyr function is used to select specific columns from a dataset? {.quiz-question} 
+- filter()  
+- mutate()  
+- [select()]{.correct data-explanation="Correct! The select() function picks variables (columns) based on their names."}  
+- summarise()
+
+## Which dplyr function is used to add new variables to a dataset?  {.quiz-question}
+- arrange()  
+- [mutate()]{.correct data-explanation="Correct! The mutate() function creates new variables by applying calculations or transformations, attaching them at the end of the dataset."}  
+- summarise()  
+- filter()
+
+## If you want to keep only rows where country == "Philippines", which function should you use?  {.quiz-question}
+- select()  
+- [filter()]{.correct data-explanation='Correct! The filter() function selects cases (rows) based on their values, such as keeping only rows where country == "Philippines".'}  
+- arrange()  
+- mutate()
+
+## Which dplyr function reduces multiple values down to a single summary statistic (e.g., mean, sum)?  {.quiz-question}
+- mutate()  
+- [summarise()]{.correct data-explanation="Correct! The summarise() function collapses multiple values into a single summary, such as calculating averages or totals."}  
+- arrange()  
+- select()
+
+## Which dplyr function is used to reorder rows in a dataset?  {.quiz-question}
+- [arrange()]{.correct data-explanation="Correct! The arrange() function changes the ordering of rows based on specified variables."}  
+- mutate()  
+- filter()  
+- select()
+
+
 
 # Basic data transformation
 
 ## Reshaping data
 
-- the process of changing the structure or layout of a dataset without altering its actual content.
+-   the process of changing the structure or layout of a dataset without altering its actual content.
 
-- it helps organize data into formats that are easier to analyze, visualize, or model.
+-   it helps organize data into formats that are easier to analyze, visualize, or model.
 
-- same information, different arrangement.
+-   same information, different arrangement.
 
 <br>
 
-::: {.columns}
-::: {.column}
-**wide formt → long format**
-![](img/pivot_longer.png)
+::::: columns
+::: column
+**wide formt → long format** ![](img/pivot_longer.png)
 :::
-::: {.column}
-**long format → wide format**
-![](img/pivot_wider.png)
-:::
-:::
-<!-- end columns -->
 
+::: column
+**long format → wide format** ![](img/pivot_wider.png)
+:::
+:::::
+
+<!-- end columns -->
 
 ## Reshaping data
 
-- `tidyr` package provides powerful functions for reshaping:
-  - `pivot_longer()` → converts wide data into long format. 
-  - `pivot_wider()` → converts long data into wide format.
+-   `tidyr` package provides powerful functions for reshaping:
+    -   `pivot_longer()` → converts wide data into long format.
+    -   `pivot_wider()` → converts long data into wide format.
 
 <br>
 
-::: {.columns}
-::: {.column}
-**wide formt → long format**
-![](img/pivot_longer.png)
+::::: columns
+::: column
+**wide formt → long format** ![](img/pivot_longer.png)
 :::
-::: {.column}
-**long format → wide format**
-![](img/pivot_wider.png)
+
+::: column
+**long format → wide format** ![](img/pivot_wider.png)
 :::
-:::
+:::::
+
 <!-- end columns -->
-
-
 
 ## Wide data format
 
-- each subject or observation occupies a single row, with multiple variables spread across columns.
+-   each subject or observation occupies a single row, with multiple variables spread across columns.
 
-- one row per entity, many columns for repeated measures.
+-   one row per entity, many columns for repeated measures.
 
-- easier for human readability and simple summaries. Often used in spreadsheets.
+-   easier for human readability and simple summaries. Often used in spreadsheets.
 
 ```{r}
 #| echo: fenced
 read_excel("data/urbanpop.xlsx")
 ```
 
-
 ## Long data format
 
-- each measurement or observation is stored in its own row, with variables indicating who, what, and when.
+-   each measurement or observation is stored in its own row, with variables indicating who, what, and when.
 
-- multiple rows per entity, fewer columns.
+-   multiple rows per entity, fewer columns.
 
-- referred for statistical modeling, visualization (e.g., `ggplot2` in R), and tidy data principles.
+-   referred for statistical modeling, visualization (e.g., `ggplot2` in R), and tidy data principles.
 
 ```{r}
 #| echo: fenced
@@ -1043,12 +1151,11 @@ read_excel("data/urbanpop.xlsx") |>
   pivot_longer(cols = `1960`:`1966`, names_to = "year", values_to = "urban_pop")
 ```
 
-
 ## Wide → Long data format
 
-- `pivot_longer()` function "lengthens" data by collapsing several coumns into two
-- original column names → names
-- data values → value
+-   `pivot_longer()` function "lengthens" data by collapsing several coumns into two
+-   original column names → names
+-   data values → value
 
 ```{r}
 #| echo: fenced
@@ -1059,22 +1166,22 @@ pivot_longer(data, cols, names_to = "name", values_to = "value")
 
 ![](img/pivot_longer.png)
 
-
 ## Wide → Long data format
 
-- `pivot_longer()` function "lengthens" data by collapsing several coumns into two
-- original column names → names
-- data values → value
+-   `pivot_longer()` function "lengthens" data by collapsing several coumns into two
+-   original column names → names
+-   data values → value
 
-::: {.columns}
-::: {.column}
+::::: columns
+::: column
 ```{r}
 #| echo: true
 #| class-output: "remark-code"
 read_excel("data/urbanpop.xlsx")
 ```
 :::
-::: {.column}
+
+::: column
 ```{r}
 #| echo: true
 #| class-output: "remark-code"
@@ -1082,15 +1189,15 @@ read_excel("data/urbanpop.xlsx") |>
   pivot_longer(cols = `1960`:`1966`, names_to = "year", values_to = "urban_pop")
 ```
 :::
-:::
-<!-- end columns -->
+:::::
 
+<!-- end columns -->
 
 ## Long → Wide data format
 
-- inverse of `pivot_longer()`, widening data by expanding two columns into many
+-   inverse of `pivot_longer()`, widening data by expanding two columns into many
 
-- used when a dataset is "too long" - an observation is scattered across multiple rows
+-   used when a dataset is "too long" - an observation is scattered across multiple rows
 
 ```{r}
 #| echo: fenced
@@ -1100,12 +1207,11 @@ pivot_wider(data, names_from = "name", values_to = "cases")
 
 ![](img/pivot_wider.png)
 
-
 ## Long → Wide data format
 
-- inverse of `pivot_longer()`, widening data by expanding two columns into many
+-   inverse of `pivot_longer()`, widening data by expanding two columns into many
 
-- used when a dataset is "too long" - an observation is scattered across multiple rows
+-   used when a dataset is "too long" - an observation is scattered across multiple rows
 
 ```{r}
 #| echo: false
@@ -1114,9 +1220,8 @@ urban_pop_long <-
   pivot_longer(cols = `1960`:`1966`, names_to = "year", values_to = "urban_pop") 
 ```
 
-::: {.columns}
-::: {.column}
-
+::::: columns
+::: column
 ```{r}
 #| echo: true
 #| class-output: "remark-code"
@@ -1124,8 +1229,8 @@ urban_pop_long <-
 urban_pop_long
 ```
 :::
-::: {.column}
 
+::: column
 ```{r}
 #| echo: true
 #| class-output: "remark-code"
@@ -1133,7 +1238,8 @@ urban_pop_long |>
   pivot_wider(names_from = year, values_from = urban_pop)
 ```
 :::
-:::
+:::::
+
 <!-- end columns -->
 
 # 
