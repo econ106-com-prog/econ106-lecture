@@ -832,6 +832,63 @@ ggplot(data = mpg,
 :::
 :::::
 
+## Try this!
+
+::: {.columns style="font-size: 0.6em;"}
+::: {.column width="40%"}
+Visualize the distribution of sepal lengths across species using a beeswarm plot.
+
+- Dataset: iris (built-in R dataset)
+
+Instructions:
+
+- Install and load the ggbeeswarm package.
+- Use the iris dataset.
+- Plot Sepal.Length (y-axis) against Species (x-axis).
+- Use geom_beeswarm() to spread points and avoid overlap.
+- Color points by species for clarity.
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| eval: false
+
+# Load packages
+library(ggplot2)
+library(ggbeeswarm)
+
+# Beeswarm plot: Sepal length by species
+ggplot(iris, aes(x = Species, y = Sepal.Length, color = Species)) +
+  geom_beeswarm(size = 3, alpha = 0.7) +
+  labs(
+    title = "Distribution of Sepal Lengths by Species",
+    x = "Species",
+    y = "Sepal Length"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16),
+    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 14, margin = margin(r = 20, t = 20)),
+    legend.text = element_text(size = 14),
+    legend.title = element_text(size = 16)
+  )
+
+ggsave(filename = "img/scatter_sample.jpg",
+       width = 8, heigh = 6)
+```
+
+```{r}
+#| echo: false
+
+knitr::include_graphics("img/scatter_sample.jpg")
+```
+:::
+:::
+<!-- end columns -->
+
 # Statistical transformation and plotting distribution
 
 ## Statistics
