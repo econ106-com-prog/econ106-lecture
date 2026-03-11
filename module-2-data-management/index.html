@@ -100,6 +100,7 @@
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-quiz/quiz.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -662,6 +663,59 @@ R2 24 68</code></pre>
 </div></div>
 </section></section>
 <section>
+<section id="check-up-quiz" class="title-slide slide level1 center">
+<h1>check-up quiz</h1>
+
+</section>
+<section id="which-of-the-following-is-not-a-basic-data-structure-in-r" class="slide level2 quiz-question">
+<h2>Which of the following is NOT a basic data structure in R?</h2>
+<ul>
+<li>Vector</li>
+<li>Matrix</li>
+<li>Array</li>
+<li><span class="correct" data-explanation="Correct! R’s basic data structures include scalars, vectors, matrices, arrays, data frames, and lists. Functions are not considered data structures; they are tools for computation.">Function</span></li>
+</ul>
+</section>
+<section id="what-is-the-correct-description-of-a-vector-in-r" class="slide level2 quiz-question">
+<h2>What is the correct description of a vector in R?</h2>
+<ul>
+<li>A two‑dimensional array with elements of the same type</li>
+<li><span class="correct" data-explanation="Correct! Vectors are the simplest data structure in R. They are one‑dimensional and must contain elements of the same type (numeric, character, or logical)">A one‑dimensional array that can hold numeric, character, or logical data</span></li>
+<li>A collection of variables of different modes stored in columns</li>
+<li>A hierarchical structure for storing lists</li>
+</ul>
+</section>
+<section id="what-happens-if-you-mix-data-types-in-a-vector" class="slide level2 quiz-question">
+<h2>What happens if you mix data types in a vector?</h2>
+<ul>
+<li>R throws an error and stops execution</li>
+<li><span class="correct" data-explanation="Correct! R enforces homogeneity in vectors. If you mix types, R coerces them into a common type (e.g., numbers + characters → character).">R automatically converts all elements to a single common type</span></li>
+<li>R stores each element in its original type</li>
+<li>R creates a list instead of a vector</li>
+</ul>
+</section>
+<section id="which-function-is-used-to-create-a-matrix-in-r" class="slide level2 quiz-question">
+<h2>Which function is used to create a matrix in R?</h2>
+<ul>
+<li>c()<br>
+</li>
+<li>data.frame()<br>
+</li>
+<li><span class="correct" data-explanation="Correct! The matrix() function creates two‑dimensional arrays where all elements are of the same type.Unlike matrices, which require all elements to be of the same type, data frames allow each column to store different types (numeric, character, logical). This makes them more flexible and widely used in R.">matrix()</span><br>
+</li>
+<li>array()</li>
+</ul>
+</section>
+<section id="how-does-a-data-frame-differ-from-a-matrix-in-r" class="slide level2 quiz-question">
+<h2>How does a data frame differ from a matrix in R?</h2>
+<ul>
+<li>A data frame can only hold numeric data</li>
+<li><span class="correct" data-explanation="Correct! Unlike matrices, which require all elements to be of the same type, data frames allow each column to store different types (numeric, character, logical). This makes them more flexible and widely used in R.">A data frame allows different columns to contain different modes of data</span></li>
+<li>A data frame is limited to two dimensions</li>
+<li>A data frame cannot be printed in tabular form</li>
+</ul>
+</section></section>
+<section>
 <section id="reading-data-into-r" class="title-slide slide level1 center">
 <h1>Reading data into R</h1>
 
@@ -785,11 +839,68 @@ R2 24 68</code></pre>
 </div>
 </div></div>
 </section></section>
-<section id="lets-practice" class="title-slide slide level1 center">
-<h1>Let’s practice</h1>
+<section>
+<section id="check-up-quiz-1" class="title-slide slide level1 center">
+<h1>Check-up quiz</h1>
 
 </section>
-
+<section id="which-r-package-is-used-to-import-spss-stata-and-sas-files" class="slide level2 quiz-question">
+<h2>Which R package is used to import SPSS, Stata, and SAS files?</h2>
+<ul>
+<li>readr<br>
+</li>
+<li><span class="correct" data-explanation="Correct! The haven package is designed to import data from SPSS (.sav), Stata (.dta), and SAS (.sas7bdat) files.">haven</span><br>
+</li>
+<li>readxl<br>
+</li>
+<li>tidyr</li>
+</ul>
+</section>
+<section id="if-you-want-to-import-excel-files-into-r-which-function-should-you-use" class="slide level2 quiz-question">
+<h2>If you want to import Excel files into R, which function should you use?</h2>
+<ul>
+<li>read_csv()<br>
+</li>
+<li><span class="correct" data-explanation="Correct! The readxl package provides the read_excel() function to import .xls or .xlsx files.">read_excel()</span><br>
+</li>
+<li>read_sav()<br>
+</li>
+<li>read_tsv()</li>
+</ul>
+</section>
+<section id="which-function-from-the-readr-package-is-used-to-import-commaseparated-values-csv-files" class="slide level2 quiz-question">
+<h2>Which function from the readr package is used to import comma‑separated values (CSV) files?</h2>
+<ul>
+<li><span class="correct" data-explanation="Correct! The readr package includes read_csv() for CSV files, read_tsv() for tab‑separated files, and read_delim() for general delimited files.">read_csv()</span><br>
+</li>
+<li>read_delim()<br>
+</li>
+<li>read_tsv()<br>
+</li>
+<li>read_excel()</li>
+</ul>
+</section>
+<section id="which-of-the-following-statements-about-importing-data-into-r-is-true" class="slide level2 quiz-question">
+<h2>Which of the following statements about importing data into R is TRUE?</h2>
+<ul>
+<li>read_sav() is used for Excel files</li>
+<li><span class="correct" data-explanation="Correct! The readr package provides read_tsv() specifically for tab‑separated files.">read_tsv() is used for tab‑separated files</span></li>
+<li>read_excel() is part of the readr package</li>
+<li>read_dta() is used for CSV files</li>
+</ul>
+</section>
+<section id="which-package-would-you-use-if-you-need-to-import-a-dataset-saved-in-stata-format-.dta" class="slide level2 quiz-question">
+<h2>Which package would you use if you need to import a dataset saved in Stata format (.dta)?</h2>
+<ul>
+<li>readxl<br>
+</li>
+<li>readr<br>
+</li>
+<li><span class="correct" data-explanation="Correct! The haven package supports importing Stata files using the read_dta() function.">haven</span><br>
+</li>
+<li>tidyr</li>
+</ul>
+</section></section>
 <section>
 <section id="basic-data-wrangling-with-dplyr" class="title-slide slide level1 center">
 <h1>Basic data wrangling with <code>dplyr</code></h1>
@@ -1447,11 +1558,71 @@ R2 24 68</code></pre>
 </div>
 </div></div>
 </section></section>
-<section id="lets-practice-1" class="title-slide slide level1 center">
-<h1>Let’s practice</h1>
+<section>
+<section id="check-up-quiz-2" class="title-slide slide level1 center">
+<h1>Check-up quiz</h1>
 
 </section>
-
+<section id="which-dplyr-function-is-used-to-select-specific-columns-from-a-dataset" class="slide level2 quiz-question">
+<h2>Which dplyr function is used to select specific columns from a dataset?</h2>
+<ul>
+<li>filter()<br>
+</li>
+<li>mutate()<br>
+</li>
+<li><span class="correct" data-explanation="Correct! The select() function picks variables (columns) based on their names.">select()</span><br>
+</li>
+<li>summarise()</li>
+</ul>
+</section>
+<section id="which-dplyr-function-is-used-to-add-new-variables-to-a-dataset" class="slide level2 quiz-question">
+<h2>Which dplyr function is used to add new variables to a dataset?</h2>
+<ul>
+<li>arrange()<br>
+</li>
+<li><span class="correct" data-explanation="Correct! The mutate() function creates new variables by applying calculations or transformations, attaching them at the end of the dataset.">mutate()</span><br>
+</li>
+<li>summarise()<br>
+</li>
+<li>filter()</li>
+</ul>
+</section>
+<section id="if-you-want-to-keep-only-rows-where-country-philippines-which-function-should-you-use" class="slide level2 quiz-question">
+<h2>If you want to keep only rows where country == “Philippines”, which function should you use?</h2>
+<ul>
+<li>select()<br>
+</li>
+<li><span class="correct" data-explanation="Correct! The filter() function selects cases (rows) based on their values, such as keeping only rows where country == &quot;Philippines&quot;.">filter()</span><br>
+</li>
+<li>arrange()<br>
+</li>
+<li>mutate()</li>
+</ul>
+</section>
+<section id="which-dplyr-function-reduces-multiple-values-down-to-a-single-summary-statistic-e.g.-mean-sum" class="slide level2 quiz-question">
+<h2>Which dplyr function reduces multiple values down to a single summary statistic (e.g., mean, sum)?</h2>
+<ul>
+<li>mutate()<br>
+</li>
+<li><span class="correct" data-explanation="Correct! The summarise() function collapses multiple values into a single summary, such as calculating averages or totals.">summarise()</span><br>
+</li>
+<li>arrange()<br>
+</li>
+<li>select()</li>
+</ul>
+</section>
+<section id="which-dplyr-function-is-used-to-reorder-rows-in-a-dataset" class="slide level2 quiz-question">
+<h2>Which dplyr function is used to reorder rows in a dataset?</h2>
+<ul>
+<li><span class="correct" data-explanation="Correct! The arrange() function changes the ordering of rows based on specified variables.">arrange()</span><br>
+</li>
+<li>mutate()<br>
+</li>
+<li>filter()<br>
+</li>
+<li>select()</li>
+</ul>
+</section></section>
 <section>
 <section id="basic-data-transformation" class="title-slide slide level1 center">
 <h1>Basic data transformation</h1>
@@ -1695,6 +1866,7 @@ R2 24 68</code></pre>
   <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="index_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-quiz/quiz.js"></script>
   <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -1718,6 +1890,7 @@ R2 24 68</code></pre>
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
+'quiz': {"checkKey":"c","resetKey":"q","shuffleKey":"t","allowNumberKeys":true,"disableOnCheck":false,"shuffleOptions":true,"defaultCorrect":"Correct!","defaultIncorrect":"Incorrect!"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1888,7 +2061,7 @@ R2 24 68</code></pre>
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, RevealQuiz, QuartoSupport,
 
           RevealMath,
           RevealNotes,
