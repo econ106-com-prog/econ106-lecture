@@ -54,25 +54,25 @@ theme_set(theme_bw(base_size = 18)) # Set theme for all ggplots
 
 ## Lessons
 
--   
+- 
 
-    -   Overview of EDA
-    -   Examining numerical data
-    -   Considering categorical data
-    -   Centrality and variability
-    -   Amounts and proportions
-    -   Comparisons
-    -   Trends
+  - Overview of EDA
+  - Examining numerical data
+  - Considering categorical data
+  - Centrality and variability
+  - Amounts and proportions
+  - Comparisons
+  - Trends
 
 # Lesson 1: What is EDA?
 
 ## EDA: an introduction
 
--   EDA is an iterative cycle that helps you understand what your data says. It involves:
+- EDA is an iterative cycle that helps you understand what your data says. It involves:
 
-    -   Generate questions about your data
-    -   Search for answers by visualizing, transforming, and modeling your data
-    -   Use what you learn to refine your questions and/or generate new questions
+  - Generate questions about your data
+  - Search for answers by visualizing, transforming, and modeling your data
+  - Use what you learn to refine your questions and/or generate new questions
 
 ## EDA: an introduction
 
@@ -90,15 +90,15 @@ There is no rule about which questions you should ask to guide your research. Ho
 
 ## Is EDA a tool for discovery or confirmation? {.quiz-question}
 
--   [Discovery]{.correct data-explanation="Correct! EDA is a tool for discovery; in fact, EDA is one of the most fruitful tools for discovery in science. We’ll focus on discovery throughout this primer, but remember that you should test any pattern that you discover before you rely on it."}
+- [Discovery]{.correct data-explanation="Correct! EDA is a tool for discovery; in fact, EDA is one of the most fruitful tools for discovery in science. We’ll focus on discovery throughout this primer, but remember that you should test any pattern that you discover before you rely on it."}
 
--   [Confirmation]{data-explanation="Not quite. EDA reveals patterns, but it does not confirm that those patterns exist beyond your data set."}
+- [Confirmation]{data-explanation="Not quite. EDA reveals patterns, but it does not confirm that those patterns exist beyond your data set."}
 
 ## When you begin to explore data, is it better to formulate one or two high-quality questions to ask, or many, many questions to explore? {.quiz-question}
 
--   [One or two high-quality questions]{data-explanation="Not quite. It is hard to spot useful questions ahead of time because you don’t know which discoveries are waiting in your data."}
+- [One or two high-quality questions]{data-explanation="Not quite. It is hard to spot useful questions ahead of time because you don’t know which discoveries are waiting in your data."}
 
--   [Many, many questions]{.correct data-explanation="Correct! Each question you ask creates a new opportunity to discover something surprising. You can lead yourself to high-value questions by iterating on questions that reveal unexpected results."}
+- [Many, many questions]{.correct data-explanation="Correct! Each question you ask creates a new opportunity to discover something surprising. You can lead yourself to high-value questions by iterating on questions that reveal unexpected results."}
 
 # Lesson 2: Examining numerical data
 
@@ -109,10 +109,10 @@ There is no rule about which questions you should ask to guide your research. Ho
 knitr::include_graphics("plot/loan_scatter.png")
 ```
 
--   
+- 
 
-    -   many borrowers with an income below \$100,000
-    -   a handful of borrowers with income above \$250,000
+  - many borrowers with an income below \$100,000
+  - a handful of borrowers with income above \$250,000
 
 ## scatter plots: R codes
 
@@ -149,10 +149,10 @@ loan50 |>
 knitr::include_graphics("plot/poverty_scatter.png")
 ```
 
--   
+- 
 
-    -   The relationship is nonlinear, as highlighted by the dashed line.
-    -   What implications can you draw from this pattern?
+  - The relationship is nonlinear, as highlighted by the dashed line.
+  - What implications can you draw from this pattern?
 
 ::: notes
 1.  Inverse relationship: As poverty rates increase, median household income decreases, following a clear downward trend shown by the dashed curve.
@@ -208,19 +208,19 @@ county |>
 knitr::include_graphics("plot/population_change_scatter.png")
 ```
 
--   
+- 
 
-    -   
+  - 
 
-        (a) Scatter plot of population change against the population before the change.
+    (a) Scatter plot of population change against the population before the change.
 
-    -   
+  - 
 
-        (b) A scatter plot of the same data but where the population size has beenlog-transformed.
+    (b) A scatter plot of the same data but where the population size has beenlog-transformed.
 
-    -   What can we infer from these plots?
+  - What can we infer from these plots?
 
-    -   Why log transformation is important?
+  - Why log transformation is important?
 
 ::: notes
 1.  
@@ -286,11 +286,11 @@ A single number representing the *middle* of a set of numbers
 <br>
 
 ::: incremental
--   **Mean**: $\frac{\text{Sum of values}}{\text{# of values}}$
+- **Mean**: $\frac{\text{Sum of values}}{\text{# of values}}$
 
--   **Median**: "Middle" value (50% of data above & below)
+- **Median**: "Middle" value (50% of data above & below)
 
--   **Mode**: Most frequent value (usually for categorical data)
+- **Mode**: Most frequent value (usually for categorical data)
 :::
 
 ## Centrality (aka the "Average" value)
@@ -335,10 +335,10 @@ knitr::include_graphics("plot/wildlife_impacts_hist.png")
 knitr::include_graphics("plot/interest_rate_dotplot.png")
 ```
 
--   
+- 
 
-    -   A dot plot is a one-variable scatterplot; an example using the interest rate of 50 loans above.
-    -   Sometimes two variables are one too many: only one variable may be of interest.
+  - A dot plot is a one-variable scatterplot; an example using the interest rate of 50 loans above.
+  - Sometimes two variables are one too many: only one variable may be of interest.
 
 ## dot plots: R codes
 
@@ -378,27 +378,27 @@ loan50 |>
 knitr::include_graphics("plot/interest_rate_histogram.png")
 ```
 
--   
+- 
 
-    -   histograms provide a view of data density
-    -   more loans with rates between 5% and 10% than loans with rates between 20% and 25%
-    -   What key patterns can histograms reveal about data?
+  - histograms provide a view of data density
+  - more loans with rates between 5% and 10% than loans with rates between 20% and 25%
+  - What key patterns can histograms reveal about data?
 
 ::::: columns
 ::: {.column width="50%"}
 **Histograms**:
 
--   Skewness
+- Skewness
 
--   Number of modes
+- Number of modes
 
 <br>
 
 **Boxplots**:
 
--   Outliers
+- Outliers
 
--   Comparing variablesn
+- Comparing variablesn
 :::
 
 ::: {.column width="50%"}
@@ -414,7 +414,7 @@ knitr::include_graphics("plot/eda-boxplot.png")
 ::: {.column width="50%"}
 **Summarise**:
 
--   Mean, median, sd, range, & IQR:
+- Mean, median, sd, range, & IQR:
 
 ```{r}
 summary(wildlife_impacts$height)
@@ -424,7 +424,7 @@ summary(wildlife_impacts$height)
 ::: {.column width="50%"}
 **Visualize**:
 
--   Histogram (identify skewness & modes)
+- Histogram (identify skewness & modes)
 
 ```{r wildlife-height-hist, fig.width=7, fig.height=5, fig.align='center'}
 ggplot(wildlife_impacts) +
@@ -461,10 +461,10 @@ ggplot(wildlife_impacts) +
 knitr::include_graphics("plot/histogram_modal_comparison.png")
 ```
 
--   
+- 
 
-    -   modes in histograms tell us how many “centers of activity” exist in the data.
-    -   they help uncover structure, complexity, and potential subgroup differences that a simple average or variance might miss.
+  - modes in histograms tell us how many “centers of activity” exist in the data.
+  - they help uncover structure, complexity, and potential subgroup differences that a simple average or variance might miss.
 
 ## histrogram comparison: R codes
 
@@ -501,19 +501,19 @@ ggplot(data, aes(x = value)) +
 
 ## Variability ("spread")
 
--   **Standard deviation**: distribution of values relative to the mean
+- **Standard deviation**: distribution of values relative to the mean
 
-    -   $s = \sqrt{\frac{\sum_{i=1}^{N}(x_i - \bar{x})^2}{N - 1}}$
+  - $s = \sqrt{\frac{\sum_{i=1}^{N}(x_i - \bar{x})^2}{N - 1}}$
 
--   **Interquartile range (IQR)**: $Q_3 - Q_1$ (middle 50% of data)
+- **Interquartile range (IQR)**: $Q_3 - Q_1$ (middle 50% of data)
 
--   **Range**: max - min
+- **Range**: max - min
 
 ## Variability ("spread")
 
--   Complaints are coming in about orders shipped from warehouse B, so you collect some data.
+- Complaints are coming in about orders shipped from warehouse B, so you collect some data.
 
--   ... here **averages** are misleading
+- ... here **averages** are misleading
 
 ::::: columns
 ::: {.column width="50%"}
@@ -547,9 +547,9 @@ days_to_ship |>
 ## Variability ("spread")
 
 ::::: columns
--   Complaints are coming in about orders shipped from warehouse B, so you collect some data:
+- Complaints are coming in about orders shipped from warehouse B, so you collect some data:
 
--   **variability** reveals difference in days to ship
+- **variability** reveals difference in days to ship
 
 ::: {.column width="50%"}
 ```{r}
@@ -599,12 +599,12 @@ knitr::include_graphics("plot/days_to_ship.png")
 :::
 
 ::: {.column width="40%"}
--   
+- 
 
-    -   Low variance: tightly clustered around the mean
-    -   Medium variance: moderately spread
-    -   High variance: widely spread
-    -   these plots tell us whether values cluster tightly around the mean (predictable) or spread widely (uncertain).
+  - Low variance: tightly clustered around the mean
+  - Medium variance: moderately spread
+  - High variance: widely spread
+  - these plots tell us whether values cluster tightly around the mean (predictable) or spread widely (uncertain).
 :::
 :::::
 
@@ -612,9 +612,9 @@ knitr::include_graphics("plot/days_to_ship.png")
 
 **Mean** and **standard deviation** are sensitive to outliers
 
--   **Outliers**: $Q_1 - 1.5 IQR$ \* $Q_3 + 1.5 IQR$
+- **Outliers**: $Q_1 - 1.5 IQR$ \* $Q_3 + 1.5 IQR$
 
--   **Extreme values**: $Q_1 - 3 IQR$ \* $Q_3 + 3 IQR$
+- **Extreme values**: $Q_1 - 3 IQR$ \* $Q_3 + 3 IQR$
 
 <br>
 
@@ -625,13 +625,13 @@ knitr::include_graphics("plot/days_to_ship.png")
 data1 <- c(3,3,4,5,5,6,6,7,8,9)
 ```
 
--   Mean: `r round(mean(data1), 2)`
+- Mean: `r round(mean(data1), 2)`
 
--   Standard deviation: `r round(sd(data1), 2)`
+- Standard deviation: `r round(sd(data1), 2)`
 
--   Median: `r median(data1)`
+- Median: `r median(data1)`
 
--   IQR: `r IQR(data1)`
+- IQR: `r IQR(data1)`
 :::
 
 ::: {.column width="50%"}
@@ -640,13 +640,13 @@ data1 <- c(3,3,4,5,5,6,6,7,8,9)
 data2 <- c(3,3,4,5,5,6,6,7,8,20)
 ```
 
--   Mean: `r mean(data2)`
+- Mean: `r mean(data2)`
 
--   Standard deviation: `r round(sd(data2), 2)`
+- Standard deviation: `r round(sd(data2), 2)`
 
--   Median: `r median(data2)`
+- Median: `r median(data2)`
 
--   IQR: `r IQR(data2)`\
+- IQR: `r IQR(data2)`\
 :::
 :::::
 
@@ -690,8 +690,8 @@ ggplot(wildlife_impacts) +
 ::: {.column width="50%"}
 **Histogram**
 
--   Skewness
--   Modes
+- Skewness
+- Modes
 
 ```{r, ref.label="wildlife-speed-hist", echo=FALSE, fig.width=7, fig.height=5, fig.align='center'}
 ```
@@ -700,7 +700,7 @@ ggplot(wildlife_impacts) +
 ::: {.column width="50%"}
 **Boxplot**
 
--   Outliers
+- Outliers
 
 <br><br>
 
@@ -713,9 +713,9 @@ ggplot(wildlife_impacts) +
 
 Robust statistics for continuous data (less sensitive to outliers)
 
--   **Centrality**: use *median* rather than *mean*
+- **Centrality**: use *median* rather than *mean*
 
--   **Variability**: use *IQR* rather than *standard deviation*
+- **Variability**: use *IQR* rather than *standard deviation*
 
 ## "Visualizing data helps us think"
 
@@ -746,7 +746,7 @@ anscombe_summary_stats
 
 ## Anscombe's Quartet
 
--   Stephen Few (2009, p6)
+- Stephen Few (2009, p6)
 
 ```{r}
 knitr::include_graphics("plot/p_corr_anscombe.png")
@@ -756,21 +756,21 @@ knitr::include_graphics("plot/p_corr_anscombe.png")
 
 <br>
 
-+-----------------------+----------------------+------------------------------------+
-| Nominal (categorical) | Ordinal (categorical | Numerical (continuous)             |
-+=======================+======================+====================================+
-| **Measures**          | **Measures**         | **Measures**                       |
-|                       |                      |                                    |
-| -   Frequency counts  | -   Frequency counts | -   Mean, median                   |
-| -   proportions       | -   proportions      | -   Range, standard deviation, IQR |
-|                       | -   Median, mode     |                                    |
-|                       | -   IQR              |                                    |
-+-----------------------+----------------------+------------------------------------+
-| **Charts**            | **Charts**           | **Charts**                         |
-|                       |                      |                                    |
-| -   Bars              | -   Bars             | -   Histogram                      |
-|                       |                      | -   Boxplot                        |
-+-----------------------+----------------------+------------------------------------+
++-----------------------+----------------------+----------------------------------+
+| Nominal (categorical) | Ordinal (categorical | Numerical (continuous)           |
++=======================+======================+==================================+
+| **Measures**          | **Measures**         | **Measures**                     |
+|                       |                      |                                  |
+| - Frequency counts    | - Frequency counts   | - Mean, median                   |
+| - proportions         | - proportions        | - Range, standard deviation, IQR |
+|                       | - Median, mode       |                                  |
+|                       | - IQR                |                                  |
++-----------------------+----------------------+----------------------------------+
+| **Charts**            | **Charts**           | **Charts**                       |
+|                       |                      |                                  |
+| - Bars                | - Bars               | - Histogram                      |
+|                       |                      | - Boxplot                        |
++-----------------------+----------------------+----------------------------------+
 
 # Lesson 3: Considering categorical data
 
